@@ -28,10 +28,11 @@ export interface StackCardItem {
  * "everything else waits until the whole stack has scrolled past" to work
  * for free, no manual height math required.
  *
- * The card itself is intentionally NOT a link, wrapping the whole thing in
- * an <a>/<Link> means you can't hover to preview without being one
- * mis-click away from leaving the page. Only the "View full case study"
- * text is real navigation.
+ * The whole card is a real link to `item.href`, not just the "view full
+ * case study" text, clicking anywhere on the card (the image, the title,
+ * the summary) navigates. The sticky *wrapper* around each card stays a
+ * plain div though, only the card itself is the `<Link>`, so the stacking
+ * behaviour below is unaffected either way.
  *
  * IMPORTANT: nothing between this component and the nearest scrolling
  * viewport may carry a CSS `transform` (including a leftover Framer Motion
@@ -86,6 +87,9 @@ export default function ScrollStackCards({
           </div>
         );
 
+        // Plain <span>, not a nested <Link>, the whole card below is
+        // already the link, an anchor inside an anchor is invalid HTML and
+        // most browsers only keep the outer one anyway.
         const copy = (
           <>
             <p className="font-mono text-[11px] uppercase tracking-widest2 text-primary-600 mb-2">
@@ -100,12 +104,9 @@ export default function ScrollStackCards({
                 {item.metric.value} <span className="text-ink-900/50 font-normal">{item.metric.label}</span>
               </p>
             )}
-            <Link
-              to={item.href}
-              className="inline-flex items-center gap-1.5 font-semibold text-[13px] text-ink-900 hover:text-primary-600 transition-colors w-fit"
-            >
-              {item.ctaLabel || "View full case study"} <ArrowRight size={14} />
-            </Link>
+            <span className="inline-flex items-center gap-1.5 font-semibold text-[13px] text-ink-900 group-hover:text-primary-600 transition-colors w-fit">
+              {item.ctaLabel || "View full case study"} <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+            </span>
           </>
         );
 
@@ -116,7 +117,10 @@ export default function ScrollStackCards({
             style={{ top: `${topOffset + i * stackStep}px`, zIndex: i + 1 }}
           >
             {imageFit === "contain" ? (
-              <div className="rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)]">
+              <Link
+                to={item.href}
+                className="group block rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)] hover:border-primary-500/40 hover:shadow-[0_28px_80px_-16px_rgba(0,0,0,0.4)] transition-[box-shadow,border-color]"
+              >
                 <div className="p-6 md:p-10 pb-4 md:pb-5 flex items-start justify-between gap-6 flex-wrap">
                   <div className="max-w-lg">{copy}</div>
                   <span className="rounded-full bg-black/5 px-3 py-1 text-[10.5px] font-mono uppercase tracking-widest2 text-ink-900/60 shrink-0">
@@ -129,9 +133,12 @@ export default function ScrollStackCards({
                 <div className="px-4 pb-4 md:px-6 md:pb-6" style={{ background: gradient }}>
                   <div className="rounded-2xl overflow-hidden">{visual}</div>
                 </div>
-              </div>
+              </Link>
             ) : (
-              <div className="rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)] grid md:grid-cols-[1.05fr_1fr]">
+              <Link
+                to={item.href}
+                className="group block rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)] hover:border-primary-500/40 hover:shadow-[0_28px_80px_-16px_rgba(0,0,0,0.4)] transition-[box-shadow,border-color] grid md:grid-cols-[1.05fr_1fr]"
+              >
                 <div
                   className="relative h-52 sm:h-64 md:h-full md:min-h-[300px] overflow-hidden"
                   style={{ background: gradient }}
@@ -142,7 +149,7 @@ export default function ScrollStackCards({
                   </span>
                 </div>
                 <div className="p-6 md:p-10 flex flex-col justify-center">{copy}</div>
-              </div>
+              </Link>
             )}
           </div>
         );
