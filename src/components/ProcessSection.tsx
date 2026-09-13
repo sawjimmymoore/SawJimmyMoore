@@ -41,33 +41,26 @@ export default function ProcessSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ delay: i * 0.08 }}
-                  className="grid grid-cols-2 items-start gap-4"
+                  className="relative grid grid-cols-2 gap-10"
                 >
-                  {left ? (
-                    <>
-                      <div className="text-right">
-                        <h3 className="text-[15px] font-semibold text-parchment-100">{step.title}</h3>
-                        <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{step.description}</p>
-                      </div>
-                      <div className="flex justify-start">
-                        <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-primary-500/40 bg-bg-card font-mono text-[13px] font-bold text-primary-500 -translate-x-1/2">
-                          {step.step}
-                        </span>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="flex justify-end">
-                        <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-primary-500/40 bg-bg-card font-mono text-[13px] font-bold text-primary-500 translate-x-1/2">
-                          {step.step}
-                        </span>
-                      </div>
-                      <div className="text-left">
-                        <h3 className="text-[15px] font-semibold text-parchment-100">{step.title}</h3>
-                        <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{step.description}</p>
-                      </div>
-                    </>
-                  )}
+                  {/* The number badge used to live inside whichever grid
+                      column it was closer to and get shoved halfway into
+                      the *other* column with a translate-x hack to land it
+                      on the spine. That translate distance (half the
+                      badge's own 44px width) was wider than the column
+                      gap, so it always overlapped the text next to it.
+                      Positioning it absolutely on the spine instead makes
+                      the badge's placement independent of the text
+                      columns entirely, so they can never collide as long
+                      as the gap leaves the badge room (it does, at gap-10 /
+                      40px vs. a 44px badge stradding the center). */}
+                  <span className="absolute left-1/2 top-0 z-10 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full border border-primary-500/40 bg-bg-card font-mono text-[13px] font-bold text-primary-500">
+                    {step.step}
+                  </span>
+                  <div className={left ? "col-start-1 text-right pr-2" : "col-start-2 text-left pl-2"}>
+                    <h3 className="text-[15px] font-semibold text-parchment-100">{step.title}</h3>
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{step.description}</p>
+                  </div>
                 </motion.div>
               );
             })}

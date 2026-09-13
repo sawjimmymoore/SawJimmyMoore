@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Home, Layers, Briefcase, Tag, MessageCircle } from "lucide-react";
+import { scrollToTop } from "@/components/ScrollToTop";
 
 const TABS = [
   { to: "/", label: "Home", icon: Home, end: true },
@@ -27,6 +28,7 @@ export default function MobileTabBar() {
           key={to}
           to={to}
           end={end}
+          onClick={to === "/" ? scrollToTop : undefined}
           className={({ isActive }) =>
             `flex flex-1 flex-col items-center gap-0.5 rounded-lg py-1.5 text-[10px] font-medium transition-colors ${
               isActive ? "text-primary-400" : "text-parchment-400"

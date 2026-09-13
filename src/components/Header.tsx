@@ -7,6 +7,7 @@ import { useTheme } from "@/lib/theme";
 import { useLang, type DictKey } from "@/lib/i18n";
 import Magnetic from "@/components/Magnetic";
 import CurrencyToggle from "@/components/CurrencyToggle";
+import { scrollToTop } from "@/components/ScrollToTop";
 
 const NAV_ITEMS: { key: DictKey; href: string }[] = [
   { key: "nav_home", href: "/" },
@@ -61,7 +62,11 @@ export default function Header() {
         }`}
       >
       <div className="flex items-center justify-between h-16 px-5 md:px-7">
-        <Link to="/" className="group relative font-display text-[19px] font-bold tracking-wide text-header-text">
+        <Link
+          to="/"
+          onClick={scrollToTop}
+          className="group relative font-display text-[19px] font-bold tracking-wide text-header-text"
+        >
           <span
             className="absolute -left-3 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-primary-500 animate-pulse"
             aria-hidden
@@ -75,6 +80,7 @@ export default function Header() {
             <NavLink
               key={item.href}
               to={item.href}
+              onClick={item.href === "/" ? scrollToTop : undefined}
               className={({ isActive }) =>
                 `group ${linkBase} relative pb-1 ${
                   isActive ? "text-header-text" : "text-header-muted hover:text-header-text"
