@@ -25,6 +25,20 @@ export default function ServiceDetail() {
           <p className="text-[16px] text-primary-400 font-semibold">{service.tagline}</p>
         </motion.div>
 
+        {/* Full mockup, shown whole and uncropped, not the cover-cropped
+            thumbnail used on the Services list, the point here is to
+            actually see the reference visual for this service. */}
+        {service.image && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16 rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)]"
+          >
+            <img src={service.image} alt={`${service.name} mockup`} loading="lazy" className="block w-full h-auto" />
+          </motion.div>
+        )}
+
         {/* PAIN POINT / IMPACT , Delve-style two-part problem framing */}
         <div className="grid sm:grid-cols-2 gap-5 mb-16">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-2xl border border-primary-500/15 bg-bg-card p-6">

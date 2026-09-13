@@ -297,11 +297,17 @@ export interface ServiceDetail {
   journey: ServiceJourneyStep[];
   investmentNote: string;
   faqs: ServiceFaq[];
+  /** A real reference mockup for this service, shown full and uncropped
+      both on the Services list (as the stacking-card cover) and on the
+      service's own detail page (as a full-width visual), never as a
+      cover-cropped sliver on either. */
+  image?: string;
 }
 
 export const SERVICES: ServiceDetail[] = [
   {
     slug: "web-development",
+    image: "/images/showcase/krugunn-business-website.jpg",
     name: "Web Development",
     icon: "code",
     tagline: "A site built to convert, not just to exist",
@@ -330,6 +336,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "e-commerce",
+    image: "/images/showcase/defabiano-ecommerce-desktop.jpg",
     name: "E-Commerce",
     icon: "cart",
     tagline: "Turn browsing into a completed order",
@@ -357,6 +364,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "digital-marketing",
+    image: "/images/showcase/marketing-nextgen.jpg",
     name: "Digital Marketing",
     icon: "megaphone",
     tagline: "Traffic and leads, not just a pretty feed",
@@ -384,6 +392,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "booking-platforms",
+    image: "/images/showcase/defabiano-booking.jpg",
     name: "Booking & Service Platforms",
     icon: "calendar",
     tagline: "Let customers book themselves in, any hour of the day",
@@ -410,6 +419,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "web-applications",
+    image: "/images/showcase/webapp-lumatech.jpg",
     name: "Web Applications & Admin Dashboards",
     icon: "database",
     tagline: "Custom software for how your business actually runs",
@@ -437,6 +447,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "nonprofit-government",
+    image: "/images/showcase/nonprofit-admin-cms.jpg",
     name: "Nonprofit & Government-Facing Sites",
     icon: "heart",
     tagline: "Built for donor trust and staff who are not developers",
@@ -464,6 +475,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "personal-brand",
+    image: "/images/showcase/personal-brand-krugunn.jpg",
     name: "Portfolio & Personal Brand Sites",
     icon: "user",
     tagline: "A site that gets you picked, not just seen",
@@ -490,6 +502,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "agency-hub",
+    image: "/images/showcase/agency-hub-horizon.jpg",
     name: "Multi-Service Agency Hubs",
     icon: "layers",
     tagline: "One site, many services, one clear path to each",
@@ -515,6 +528,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "learning-platforms",
+    image: "/images/showcase/learning-learnhub.jpg",
     name: "Learning Platforms & LMS",
     icon: "database",
     tagline: "Sell and deliver a course without chasing payments in a chat app",
@@ -541,6 +555,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: "directory-listing",
+    image: "/images/showcase/directory-localfind.jpg",
     name: "Directory & Listing Sites",
     icon: "user",
     tagline: "A searchable list of things, that people can actually search",

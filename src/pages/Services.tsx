@@ -18,22 +18,6 @@ const ICON_COLORS: Record<string, [string, string]> = {
   layers: ["#0f1a14", "#1e3a2a"],
 };
 
-// A matching styled mockup per service, from the same reference pack used
-// on Projects, so both pages read as one consistent, photo-forward system
-// instead of services falling back to flat brand-color gradients.
-const SERVICE_IMAGES: Record<string, string> = {
-  "web-development": "/images/showcase/krugunn-business-website.jpg",
-  "e-commerce": "/images/showcase/defabiano-ecommerce-desktop.jpg",
-  "digital-marketing": "/images/showcase/analytics-insighthub.jpg",
-  "booking-platforms": "/images/showcase/defabiano-booking.jpg",
-  "web-applications": "/images/showcase/saas-nexora.jpg",
-  "nonprofit-government": "/images/showcase/booking-and-directory.jpg",
-  "personal-brand": "/images/showcase/krugunn-website.jpg",
-  "agency-hub": "/images/showcase/crm-leadpro.jpg",
-  "learning-platforms": "/images/showcase/krugunn-business-website.jpg",
-  "directory-listing": "/images/showcase/booking-and-directory.jpg",
-};
-
 const cards: StackCardItem[] = SERVICES.map((s) => {
   const [from, to] = ICON_COLORS[s.icon] || ["#1a2332", "#4a7fa5"];
   return {
@@ -41,7 +25,7 @@ const cards: StackCardItem[] = SERVICES.map((s) => {
     title: s.name,
     category: s.tagline,
     summary: s.painPoint,
-    image: SERVICE_IMAGES[s.slug],
+    image: s.image,
     gradientFrom: from,
     gradientTo: to,
     href: `/services/${s.slug}`,

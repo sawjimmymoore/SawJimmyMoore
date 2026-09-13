@@ -336,7 +336,6 @@ export default function Contact() {
               )}
               <p className="text-center text-[11px] text-muted-foreground">
                 This sends a request, it doesn't lock the slot yet. Jimmy confirms by email, no double-booking risk.
-                Swap in Cal.com or a calendar-API backend here for instant, automatic confirmation.
               </p>
             </motion.form>
           </>

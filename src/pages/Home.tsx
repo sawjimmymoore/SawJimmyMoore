@@ -186,7 +186,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-mono text-[11px] uppercase tracking-widest2 text-primary-400 mb-4 md:mb-6"
+              className="font-mono text-[11px] uppercase tracking-widest2 text-primary-400 mb-4 md:mb-6 leading-[1.9]"
             >
               {SITE.tagline}
             </motion.p>
@@ -378,7 +378,18 @@ export default function Home() {
           browser released it before you'd scrolled through all of it.
           Fixed by giving Panel 1 an explicit, generous floor instead of
           trusting the browser to measure a 3D canvas + hover-animated rows
-          correctly on every device. */}
+          correctly on every device.
+
+          `scroll-snap-align` + `scroll-snap-stop: always` used to sit on
+          all three panels too. Scroll-snap treats each snap target as a
+          single logical stop, but these panels are 1-2.4x a viewport tall
+          internally (nested sticky cards eating their own scroll range),
+          so the snap engine and the sticky math fought each other,
+          worst on the way back up: a reverse scroll could get forced to
+          re-stop at a panel boundary mid-stack, producing the panel 1
+          cards and panel 2's heading visibly overlapping for a frame.
+          Removed from all three, the page-level `scroll-snap-type` in
+          index.css is harmless with nothing left opted into it. */}
       <div className="relative">
         {/* Panel 1: Projects. Background is a hardcoded light gray
             regardless of site theme, so every text color in here must be
@@ -386,9 +397,9 @@ export default function Home() {
             classes (those flip to near-white in dark mode, which is
             invisible against this panel's always-light background, this
             was the white-on-white "Projects I've built" bug). */}
-        <section className="sticky top-0 z-10 min-h-screen lg:min-h-[145vh] flex items-start bg-[#eef1f4] [scroll-snap-align:start] [scroll-snap-stop:always] px-6 pt-24 md:pt-28 pb-16">
+        <section className="sticky top-0 z-10 min-h-screen lg:min-h-[145vh] flex items-start bg-[#eef1f4] px-6 pt-24 md:pt-28 pb-16">
           <div className="container-page">
-            <div className="flex items-end justify-between flex-wrap gap-6 mb-8">
+            <div className="relative z-40 flex items-end justify-between flex-wrap gap-6 mb-8">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-widest2 text-primary-600 mb-3">{t("section_selected_work")}</p>
                 <h2 className="font-black text-3xl md:text-5xl tracking-tight text-ink-900">
@@ -398,7 +409,7 @@ export default function Home() {
               <SectionCTA label={t("view_all")} to="/projects" variant="outline" tone="light" />
             </div>
 
-            <ScrollStackCards items={FEATURED_CARDS} />
+            <ScrollStackCards items={FEATURED_CARDS} topOffset={168} />
 
             {/* Fun secondary explorer: services and common problems, not
                 projects (those are the list right above), each node routes to
@@ -432,7 +443,7 @@ export default function Home() {
             no color and inheriting the page's default, also wrong here) and
             were invisible against this panel whenever a visitor had light
             mode on. */}
-        <section className="sticky top-0 z-20 min-h-screen flex items-center bg-ink-900 [scroll-snap-align:start] [scroll-snap-stop:always] px-6 py-20">
+        <section className="sticky top-0 z-20 min-h-screen flex items-center bg-ink-900 px-6 py-20">
           <div className="container-page">
             <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
               <div>
@@ -478,7 +489,7 @@ export default function Home() {
             standalone Pricing page: a price only means anything once scope
             is confirmed on a call, showing one here invites comparison
             against a completely different scope somewhere else. */}
-        <section className="sticky top-0 z-30 min-h-screen flex items-center bg-[#444733] [scroll-snap-align:start] [scroll-snap-stop:always] px-6 py-20">
+        <section className="sticky top-0 z-30 min-h-screen flex items-center bg-[#444733] px-6 py-20">
           <div className="container-page">
             <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
               <div>

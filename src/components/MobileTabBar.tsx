@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Home, Layers, Briefcase, Tag, MessageCircle } from "lucide-react";
 
 const TABS = [
@@ -17,11 +17,6 @@ const TABS = [
  * small screens (hidden md:up).
  */
 export default function MobileTabBar() {
-  const location = useLocation();
-  // Contact page already shows a full booking flow; keep the bar out of the
-  // way there so it doesn't compete with the calendar or float over a form.
-  if (location.pathname === "/contact") return null;
-
   return (
     <nav
       className="fixed bottom-0 inset-x-0 z-40 flex md:hidden items-stretch justify-between border-t border-primary-500/15 bg-ink-900/95 backdrop-blur-md px-1 pt-1.5 pb-[calc(0.375rem+env(safe-area-inset-bottom))]"
