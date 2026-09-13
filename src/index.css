@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Jimmy's palette — ivory background, navy ink, steel-blue accent */
+  :root {
+    --bg: 248 245 240;
+    --bg-card: 255 255 255;
+    --bg-muted: 240 236 228;
+    --ink-900: 26 35 50;
+    --ink-800: 36 48 68;
+    --ink-700: 238 232 222;
+    --text: 42 52 66;
+    --text-50: 26 35 50;
+    --text-100: 42 52 66;
+    --text-200: 90 102 120;
+    --primary-50: 238 244 249;
+    --primary-300: 107 159 196;
+    --primary-400: 74 127 165;
+    --primary-500: 58 105 140;
+    --primary-600: 42 84 115;
+    --primary-700: 30 64 90;
+    /* darkened from 138/149/163 — original failed AA contrast on white/ivory */
+    --muted-foreground: 100 111 128;
+    --on-primary: 255 255 255;
+    /* deep military olive, sampled from the corduroy swatch reference */
+    --accent-warm: 68 71 51;
+    --header-bg: 248 245 240;
+    --header-text: 26 35 50;
+    --header-text-muted: 90 102 120;
+    --header-border: 26 35 50;
+    --scrollbar-track: 240 236 228;
+    --scrollbar-thumb: 74 127 165;
+    --scrollbar-thumb-hover: 58 105 140;
+  }
+
+  /* Dark mode — charcoal grey, never pure black. Header, footer, and
+     section bands each get a distinct shade so the page reads in layers
+     instead of one flat black slab. */
+  html.dark {
+    --bg: 20 22 26;
+    --bg-card: 30 33 39;
+    --bg-muted: 26 29 34;
+    --ink-900: 26 35 50;
+    --ink-800: 36 48 68;
+    --ink-700: 25 28 33;
+    --text: 232 234 238;
+    --text-50: 250 250 252;
+    --text-100: 232 234 238;
+    --text-200: 172 179 190;
+    --primary-50: 32 42 54;
+    --primary-300: 122 172 206;
+    --primary-400: 96 152 190;
+    --primary-500: 82 140 180;
+    --primary-600: 58 105 140;
+    --primary-700: 42 84 115;
+    --muted-foreground: 156 164 176;
+    --on-primary: 255 255 255;
+    /* lighter tint of the same fabric olive, for contrast against the
+       dark background */
+    --accent-warm: 163 171 124;
+    --header-bg: 14 16 19;
+    --header-text: 235 238 242;
+    --header-text-muted: 156 164 176;
+    --header-border: 255 255 255;
+    --scrollbar-track: 26 29 34;
+    --scrollbar-thumb: 82 140 180;
+    --scrollbar-thumb-hover: 96 152 190;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Proximity (not mandatory) snap: only pulls the page to rest at a
+       panel boundary when a scroll gesture already ends near one, so a
+       fast scrollbar drag or a hard trackpad fling settles on the
+       nearest Projects/Services/Packages panel instead of sailing
+       straight through all three before anyone can read them. Doesn't
+       fight normal scrolling anywhere else on the site since no other
+       page opts an element into scroll-snap-align. */
+    scroll-snap-type: y proximity;
+  }
+
+  body {
+    @apply bg-bg text-parchment-100 font-body antialiased transition-colors duration-300;
+  }
+
+  ::selection {
+    background-color: rgb(var(--primary-400));
+    color: rgb(var(--on-primary));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary-400));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--scrollbar-track));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--scrollbar-thumb));
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--scrollbar-thumb-hover));
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest2 text-primary-400;
+  }
+
+  .card-surface {
+    @apply bg-ink-800/5 backdrop-blur-sm rounded-xl border border-primary-500/20;
+  }
+
+  .grain-overlay {
+    @apply pointer-events-none absolute inset-0 bg-grain opacity-[0.04] mix-blend-overlay;
+  }
+
+  .text-on-primary {
+    color: rgb(var(--on-primary));
+  }
+
+  .gradient-text {
+    background-image: linear-gradient(to right, rgb(var(--accent-warm)), rgb(var(--primary-400)), rgb(var(--accent-warm)));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 8s linear infinite;
+  }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.55; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
