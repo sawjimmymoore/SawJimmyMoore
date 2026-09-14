@@ -30,22 +30,32 @@ export default function Contact() {
   const matchedPackagePrice = matchedPackage
     ? formatPriceRange(matchedPackage.priceMinTHB, matchedPackage.priceMaxTHB, currency, matchedPackage.priceIsFloor)
     : "";
+  // Arrives from the Pricing page's quote calculator: a pre-built summary
+  // of the packages/add-ons someone selected there. That calculator used
+  // to have its own separate submit form; now it hands off here instead,
+  // so this is the only form on the site that actually sends a lead.
+  const quoteSummary = searchParams.get("quote");
 
   const [form, setForm] = useState({ name: "", email: "", message: "", hp: "" });
   const [isCustom, setIsCustom] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [mode, setMode] = useState<"call" | "message">("call");
+  // A quote summary is a fair bit of written detail, so land on the
+  // message tab with it already filled in rather than the calendar;
+  // booking a call is still one tap away either way.
+  const [mode, setMode] = useState<"call" | "message">(quoteSummary ? "message" : "call");
 
   useEffect(() => {
-    if (matchedPackage) {
+    if (quoteSummary) {
+      setForm((f) => ({ ...f, message: f.message || quoteSummary }));
+    } else if (matchedPackage) {
       setForm((f) => ({
         ...f,
         message: f.message || `I'm interested in the ${matchedPackage.name} package (${matchedPackagePrice}). `,
       }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [packageSlug]);
+  }, [packageSlug, quoteSummary]);
 
   const canSubmit = form.name.trim() && form.email.trim() && (form.message.trim() || selectedSlot);
 
@@ -74,9 +84,9 @@ export default function Contact() {
           email: form.email,
           message: form.message || "(no message, call slot requested below)",
           requested_slot: selectedSlot || "(no call requested, message only)",
-          package: matchedPackage?.name || "(not specified)",
+          package: matchedPackage?.name || (quoteSummary ? "(see custom quote in message)" : "(not specified)"),
           custom_request: isCustom ? "Yes, flagged as custom" : "No",
-          source: "Contact Page",
+          source: quoteSummary ? "Pricing Page Quote Calculator" : matchedPackage ? "Pricing Page" : "Contact Page",
         }),
       });
       setStatus(res.ok ? "sent" : "error");
@@ -114,7 +124,9 @@ export default function Contact() {
           <p className="eyebrow mb-4">Get In Touch</p>
           <h1 className="font-black text-4xl md:text-6xl text-parchment-100 mb-5 tracking-tight">{t("contact_title")}</h1>
           <p className="text-[15.5px] text-parchment-200 leading-relaxed max-w-xl mx-auto">
-            {matchedPackage
+            {quoteSummary
+              ? "Your custom quote selection is below, edit it if you'd like, pick a time to talk it through, or just send it as a message."
+              : matchedPackage
               ? `Booking a free scoping call for the ${matchedPackage.name} package, no payment, no obligation, just a conversation to lock down the scope.`
               : "Pick a free 15-minute slot below, no pitch deck, no obligation, or send a message if you'd rather start there."}
           </p>

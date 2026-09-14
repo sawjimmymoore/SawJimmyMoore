@@ -28,7 +28,6 @@ const ServiceDetail = lazy(() => import("@/pages/ServiceDetail"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
-const Quote = lazy(() => import("@/pages/Quote"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
 const Terms = lazy(() => import("@/pages/Terms"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
@@ -96,7 +95,10 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/experience" element={<Navigate to="/about" replace />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/quote" element={<Quote />} />
+              {/* Quote used to be its own page with its own separate lead
+                  form; its calculator now lives inside Pricing, so this
+                  just redirects any old links/bookmarks there. */}
+              <Route path="/quote" element={<Navigate to="/pricing" replace />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />

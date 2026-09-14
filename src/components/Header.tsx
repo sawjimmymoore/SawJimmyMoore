@@ -144,13 +144,10 @@ export default function Header() {
           >
             {/* Home, Services, Projects, Pricing, and Contact live in the fixed
                 bottom tab bar on mobile now, one tap away, no menu needed.
-                This dropdown is just for the rest: About and a quote request. */}
+                This dropdown is just for the rest: About and LinkedIn. */}
             <div className="py-4 px-4 flex flex-col gap-1">
               <Link to="/about" className="rounded-lg px-3 py-3 text-[15px] text-header-text hover:bg-primary-500/10 transition-colors">
                 {t("nav_about")}
-              </Link>
-              <Link to="/quote" className="rounded-lg px-3 py-3 text-[15px] text-header-text hover:bg-primary-500/10 transition-colors">
-                {t("nav_quote")}
               </Link>
               <a
                 href="https://linkedin.com/in/jimmy-moore-742b75214"

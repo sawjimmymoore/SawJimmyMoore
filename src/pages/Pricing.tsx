@@ -4,6 +4,7 @@ import { ArrowRight, Check, RefreshCw } from "lucide-react";
 import { PACKAGES, ADDONS, ADDON_PRICING_DISCLAIMER } from "@/data/content";
 import Magnetic from "@/components/Magnetic";
 import RevealText from "@/components/RevealText";
+import QuoteBuilder from "@/components/QuoteBuilder";
 
 /**
  * No numbers on this page anymore, on purpose. What's included per tier is
@@ -138,6 +139,19 @@ export default function Pricing() {
           <p className="text-center text-[11px] text-muted-foreground mt-6 max-w-lg mx-auto">
             {ADDON_PRICING_DISCLAIMER}
           </p>
+        </motion.div>
+
+        {/* CUSTOM QUOTE CALCULATOR, formerly its own /quote page. Folded in
+            here (and its own separate submit form dropped) so there's one
+            packages page and one contact form on the whole site instead of
+            two different places asking for a lead. */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-20 pt-16 border-t border-primary-500/10"
+        >
+          <QuoteBuilder />
         </motion.div>
       </div>
     </div>

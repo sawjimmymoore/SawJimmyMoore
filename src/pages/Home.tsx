@@ -250,29 +250,39 @@ export default function Home() {
 
             {/* CTA bar, one continuous pill with internal dividers, the same
                 idea as the reference's "Date&time | Visitors | Room type |
-                Book now" booking bar, adapted to this site's 3 real CTAs. */}
+                Book now" booking bar, adapted to this site's 3 real CTAs.
+                On mobile this used to wrap onto two uneven rows (the two
+                text links up top, "Get In Touch" alone below) while
+                staying rounded-full on the whole container, which reads
+                as a lopsided blob rather than a bar. Below `sm` it now
+                lays out as an explicit 2-col row + a full-width button
+                row inside a softer rounded rect; the inner grid collapses
+                back into the desktop's single-row pill via `sm:contents`
+                once there's room for it. */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex flex-wrap items-stretch rounded-full bg-white/95 backdrop-blur p-1.5 gap-1 shadow-xl"
+              className="flex w-full flex-col gap-1 rounded-[28px] bg-white/95 backdrop-blur p-1.5 shadow-xl sm:inline-flex sm:w-auto sm:flex-row sm:items-stretch sm:gap-1 sm:rounded-full"
             >
-              <Link
-                to="/projects"
-                className="flex items-center gap-1.5 rounded-full px-4 md:px-5 py-2.5 text-[12.5px] md:text-[13.5px] font-semibold text-ink-900 hover:bg-black/5 transition-colors"
-              >
-                {t("hero_view_projects")}
-              </Link>
-              <Link
-                to="/pricing"
-                className="flex items-center gap-1.5 rounded-full px-4 md:px-5 py-2.5 text-[12.5px] md:text-[13.5px] font-semibold text-ink-900 hover:bg-black/5 transition-colors"
-              >
-                See Pricing
-              </Link>
+              <div className="grid grid-cols-2 gap-1 sm:contents">
+                <Link
+                  to="/projects"
+                  className="flex items-center justify-center gap-1.5 rounded-full px-4 md:px-5 py-2.5 text-[12.5px] md:text-[13.5px] font-semibold text-ink-900 hover:bg-black/5 transition-colors"
+                >
+                  {t("hero_view_projects")}
+                </Link>
+                <Link
+                  to="/pricing"
+                  className="flex items-center justify-center gap-1.5 rounded-full px-4 md:px-5 py-2.5 text-[12.5px] md:text-[13.5px] font-semibold text-ink-900 hover:bg-black/5 transition-colors"
+                >
+                  See Pricing
+                </Link>
+              </div>
               <Magnetic strength={0.2}>
                 <Link
                   to="/contact"
-                  className="flex items-center gap-2 rounded-full bg-ink-900 text-white px-5 md:px-6 py-2.5 text-[12.5px] md:text-[13.5px] font-bold hover:bg-primary-500 transition-colors duration-200"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-ink-900 text-white px-5 md:px-6 py-2.5 text-[12.5px] md:text-[13.5px] font-bold hover:bg-primary-500 transition-colors duration-200 sm:w-auto"
                 >
                   {t("hero_get_in_touch")} <ArrowRight size={14} />
                 </Link>
