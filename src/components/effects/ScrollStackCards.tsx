@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
-import { ArrowRight, Maximize2, Minus, Plus, X } from "lucide-react";
+import { ArrowRight, Maximize2 } from "lucide-react";
 import TiltCard from "@/components/TiltCard";
+import ImageLightbox from "@/components/effects/ImageLightbox";
+import { useImageLightbox } from "@/components/effects/useImageLightbox";
 
 export interface StackCardItem {
   slug: string;
@@ -69,16 +69,7 @@ export default function ScrollStackCards({
   // of state per card: only one mockup can ever be open at a time, so a
   // single { image, title } slot here is enough, and it means opening a new
   // one from a different card can't leave a stale open state behind.
-  const [lightbox, setLightbox] = useState<{ image: string; title: string } | null>(null);
-  const [zoom, setZoom] = useState(1);
-
-  function openLightbox(image: string, title: string) {
-    setZoom(1);
-    setLightbox({ image, title });
-  }
-  function closeLightbox() {
-    setLightbox(null);
-  }
+  const { lightbox, zoom, setZoom, open: openLightbox, close: closeLightbox } = useImageLightbox();
 
   return (
     <div className="relative">
@@ -210,68 +201,7 @@ export default function ScrollStackCards({
         );
       })}
 
-      {/* Portaled to document.body rather than rendered in place: this
-          component lives deep inside the sticky-stack tree, and per the
-          note above, any transform on an ancestor between here and the
-          viewport would just as happily break `position: fixed` as it
-          breaks `position: sticky`. Rendering at the body root sidesteps
-          that entirely. */}
-      {lightbox &&
-        createPortal(
-          <div
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-10"
-            onClick={closeLightbox}
-          >
-            <button
-              type="button"
-              onClick={closeLightbox}
-              aria-label="Close"
-              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:right-6 md:top-6"
-            >
-              <X size={20} />
-            </button>
-
-            <div
-              className="flex items-center gap-2 rounded-full bg-white/10 px-2 py-2 absolute bottom-6 left-1/2 -translate-x-1/2"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setZoom((z) => Math.max(1, +(z - 0.5).toFixed(1)))}
-                aria-label="Zoom out"
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-white/15 disabled:opacity-40"
-                disabled={zoom <= 1}
-              >
-                <Minus size={16} />
-              </button>
-              <span className="w-12 text-center font-mono text-[12px] text-white/80">
-                {Math.round(zoom * 100)}%
-              </span>
-              <button
-                type="button"
-                onClick={() => setZoom((z) => Math.min(3, +(z + 0.5).toFixed(1)))}
-                aria-label="Zoom in"
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-white/15 disabled:opacity-40"
-                disabled={zoom >= 3}
-              >
-                <Plus size={16} />
-              </button>
-            </div>
-
-            <div
-              className="max-h-[85vh] max-w-[90vw] overflow-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={lightbox.image}
-                alt={lightbox.title}
-                style={{ transform: `scale(${zoom})`, transformOrigin: "center" }}
-                className="h-auto max-h-[85vh] w-auto max-w-[90vw] select-none rounded-lg object-contain transition-transform duration-200"
-              />
-            </div>
-          </div>,
-          document.body
-        )}
+      <ImageLightbox lightbox={lightbox} zoom={zoom} setZoom={setZoom} onClose={closeLightbox} />
     </div>
   );
 }

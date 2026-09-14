@@ -1,15 +1,18 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Code2, ShoppingCart, Megaphone, CalendarClock, Check, Database, HeartHandshake, UserCircle, Layers } from "lucide-react";
+import { ArrowRight, Code2, ShoppingCart, Megaphone, CalendarClock, Check, Database, HeartHandshake, UserCircle, Layers, Maximize2 } from "lucide-react";
 import { SERVICES } from "@/data/content";
 import Magnetic from "@/components/Magnetic";
 import FaqAccordion from "@/components/FaqAccordion";
+import ImageLightbox from "@/components/effects/ImageLightbox";
+import { useImageLightbox } from "@/components/effects/useImageLightbox";
 
 const ICONS = { code: Code2, cart: ShoppingCart, megaphone: Megaphone, calendar: CalendarClock, database: Database, heart: HeartHandshake, user: UserCircle, layers: Layers };
 
 export default function ServiceDetail() {
   const { slug } = useParams();
   const service = SERVICES.find((s) => s.slug === slug);
+  const { lightbox, zoom, setZoom, open: openLightbox, close: closeLightbox } = useImageLightbox();
   if (!service) return <Navigate to="/services" replace />;
   const Icon = ICONS[service.icon];
 
@@ -33,9 +36,17 @@ export default function ServiceDetail() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)]"
+            className="relative group/mockup mb-16 rounded-[26px] md:rounded-[32px] overflow-hidden bg-white border border-black/5 shadow-[0_24px_70px_-20px_rgba(0,0,0,0.35)]"
           >
             <img src={service.image} alt={`${service.name} mockup`} loading="lazy" className="block w-full h-auto" />
+            <button
+              type="button"
+              onClick={() => openLightbox(service.image!, `${service.name} mockup`)}
+              aria-label={`Maximize ${service.name} mockup`}
+              className="absolute top-3 right-3 md:top-4 md:right-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/55 backdrop-blur text-white/90 opacity-100 md:opacity-0 md:group-hover/mockup:opacity-100 transition-opacity duration-200 hover:bg-black/70"
+            >
+              <Maximize2 size={15} />
+            </button>
           </motion.div>
         )}
 
@@ -116,6 +127,8 @@ export default function ServiceDetail() {
           </Magnetic>
         </div>
       </div>
+
+      <ImageLightbox lightbox={lightbox} zoom={zoom} setZoom={setZoom} onClose={closeLightbox} />
     </div>
   );
 }
