@@ -33,7 +33,7 @@ async function getReply(userText: string): Promise<string> {
     return "Jimmy co-founded Click to Create (CTC) in August 2026 and leads all of its technology. MMG's website and the Daw Na Yeik Odoo system are CTC projects he builds. You can see them on the Work page.";
   }
   if (text.includes("campaign") || text.includes("social") || text.includes("marketing") || text.includes("lead")) {
-    return "Jimmy is the marketing lead and strategist at Fen-i. He runs social and paid campaigns for Zebra Pitch, Young CEO and Fen-i, and manages the CTC social pages. The Zebra and Fen-i case studies are on the Work page.";
+    return "Jimmy was marketing lead and strategist at Fen-i from June to August 2026, running social and paid campaigns for Zebra Pitch, Young CEO and Fen-i. He now manages the CTC social pages. The Zebra and Fen-i case studies are on the Work page.";
   }
   if (text.includes("built") || text.includes("build") || text.includes("website") || text.includes("project") || text.includes("odoo") || text.includes("mmg")) {
     return "Recent builds include the bilingual MMG and CTC websites with admin dashboards, an Odoo business system for Daw Na Yeik, and the MTSS platform. Check the Work page for each one.";

@@ -1,14 +1,14 @@
 export const SITE = {
   name: "Saw Jimmy Moore",
   firstName: "Jimmy",
-  tagline: "Marketing Lead · Co-founder, CTC · Digital & Tech",
+  tagline: "Co-founder, CTC · Marketing & Social Media · Digital & Tech",
   titles: [
-    "Marketing Lead & Strategist",
     "Co-founder, CTC (IT & Tech)",
+    "Marketing & Social Media",
     "Web & Systems",
   ],
   description:
-    "Co-founder of Click to Create (CTC), where I lead the technology side and build websites and systems such as MMG and Daw Na Yeik. I also lead marketing and social media campaigns at Fen-i.",
+    "Co-founder of Click to Create (CTC), where I lead technology and build websites and systems such as MMG and Daw Na Yeik. Previously marketing lead at Fen-i, running social and paid campaigns for Zebra Pitch and Young CEO.",
   location: "Bangkok, Thailand",
   email: "mjimm.saw@gmail.com",
   phone: "+66 094-316-3065",
@@ -62,7 +62,7 @@ export const IMPACT_POINTS = [
 // in RESULTS and PROJECTS, this is the pitch, not the CV.
 export const ABOUT_PARAGRAPHS = [
   "I co-founded Click to Create (CTC) in August 2026 and lead all of its technology: websites, internal systems and automation. The MMG website and the Daw Na Yeik Odoo system are CTC projects that I build and hand over, including training.",
-  "I am also the marketing lead and strategist at Fen-i, where I plan and run social media and paid campaigns for Zebra Pitch, Young CEO and the Fen-i pages, and manage the content calendars and analytics behind them.",
+  "Before CTC I was the marketing lead and strategist at Fen-i (June to August 2026), where I planned and ran social media and paid campaigns for Zebra Pitch, Young CEO and the Fen-i pages, with the content calendars and analytics behind them. I still manage the CTC social pages.",
   "My background is tech and marketing, with earlier roles in education coordination that taught me to run events, communicate clearly and keep a team on schedule. That mix is why I can brief, build and measure a campaign myself, from the page it lands on to the numbers that come back.",
 ];
 
@@ -124,16 +124,6 @@ export interface ExperienceItem {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    period: "Jun 2026 – Present",
-    role: "Marketing Lead & Strategist",
-    company: "Feni Space / Future Education Network International (Fen-i), Bangkok",
-    bullets: [
-      "Lead marketing and creative planning for a Bangkok youth education organization focused on entrepreneurship and leadership",
-      "Run social media and paid campaigns for Zebra Pitch International 2026, a youth pitch competition at EMQuartier Bangkok, and for Young CEO",
-      "Plan content calendars, campaign monitoring and website analytics, in coordination with the founder and operations team",
-    ],
-  },
-  {
     period: "Aug 2026 – Present",
     role: "Co-founder, IT & Technology Lead",
     company: "Click to Create (CTC)",
@@ -141,6 +131,16 @@ export const EXPERIENCE: ExperienceItem[] = [
       "Co-founded the company and lead all of its technical work: websites, systems and automation",
       "Build and deliver client projects including the MMG website and the Daw Na Yeik Odoo system",
       "Manage CTC's social media pages and built its bilingual website",
+    ],
+  },
+  {
+    period: "Jun 2026 – Aug 2026",
+    role: "Marketing Lead & Strategist",
+    company: "Feni Space / Future Education Network International (Fen-i), Bangkok",
+    bullets: [
+      "Led marketing and creative planning for a Bangkok youth education organization focused on entrepreneurship and leadership",
+      "Ran social media and paid campaigns for Zebra Pitch International 2026, a youth pitch competition at EMQuartier Bangkok, and for Young CEO",
+      "Planned content calendars, campaign monitoring and website analytics, in coordination with the founder and operations team",
     ],
   },
   {
@@ -1101,29 +1101,29 @@ export const PROJECTS: Project[] = [
     client: "Future Education Network International (Fen-i)",
     category: "Marketing & Strategy",
     role: "Marketing Lead & Strategist",
-    period: "2026 – Present",
+    period: "Jun 2026 – Aug 2026",
     summary:
-      "Owning the full marketing lifecycle for Fen-i's education programmes, strategy, lead generation, paid ads, content, and website infrastructure, reporting directly to the CEO & Founder.",
+      "Owned the full marketing lifecycle for Fen-i's education programmes, strategy, lead generation, paid ads, content, and website infrastructure, reporting directly to the CEO & Founder.",
     description:
-      "Owns Fen-i's full marketing function across the entire funnel, brand awareness through enrollment and retention, for Young CEO Programme, Startup Pathway, and Feni Online Courses. Covers strategy, paid campaigns, content direction, lead tracking, GA4/GTM setup, and developer handouts for the fenispace.com marketing pages.",
+      "Owned Fen-i's full marketing function across the entire funnel, brand awareness through enrollment and retention, for Young CEO Programme, Startup Pathway, and Feni Online Courses. Covered strategy, paid campaigns, content direction, lead tracking, GA4/GTM setup, and developer handouts for the fenispace.com marketing pages.",
     challenge:
       "Fen-i needed a Marketing Lead who could own strategy and execution at once across multiple live programmes, each with different audiences and price points, while fixing a conversion funnel stuck at 1.8%, and building the reporting systems and developer specs a growing team could eventually run without relying on one person.",
     journey: [
       { step: "Onboarding", title: "Onboarding", description: "Took over marketing across Young CEO Programme, Startup Pathway, and Feni Online Courses at once, each with different audiences and price points." },
       { step: "Diagnose", title: "Diagnose", description: "Identified the lead-to-enrollment bottleneck stuck at 1.8% and where in the funnel it was actually breaking down." },
       { step: "Rebuild", title: "Rebuild", description: "Rebuilt the funnel around human takeover at high-ticket decision points, with GA4/GTM tracking wired in to measure it properly." },
-      { step: "Scale", title: "Scale", description: "Ongoing campaign management, content direction, and developer handouts for fenispace.com, still active." },
+      { step: "Scale", title: "Scale", description: "Campaign management, content direction, and developer handouts for fenispace.com." },
     ],
     approach: [
-      "Own full Fen-i marketing strategy, brand positioning, audience targeting, campaign phasing, and channel mix across Facebook, Instagram, YouTube, and LINE OA",
-      "Plan and launch cohort campaigns for Young CEO Programme (4-week entrepreneurship programme, ages 7–18, THB 49,000) from trial class through full enrollment, first cohort Jul 7–Aug 5",
-      "Drive enrollment for Startup Pathway toward a 100-active-student target by December 2026 (12–14 new students/month)",
-      "Build and manage lead generation campaigns across Facebook, Instagram, LINE OA, and Messenger, tracking funnel stage from Intake to Qualified to Converted",
+      "Owned full Fen-i marketing strategy, brand positioning, audience targeting, campaign phasing, and channel mix across Facebook, Instagram, YouTube, and LINE OA",
+      "Planned and launched cohort campaigns for Young CEO Programme (4-week entrepreneurship programme, ages 7–18, THB 49,000) from trial class through full enrollment, first cohort Jul 7–Aug 5",
+      "Drove enrollment for Startup Pathway toward a 100-active-student target by December 2026 (12–14 new students/month)",
+      "Built and managed lead generation campaigns across Facebook, Instagram, LINE OA, and Messenger, tracking funnel stage from Intake to Qualified to Converted",
       "Diagnosed a lead-to-enrollment bottleneck at 1.8% and recommended human takeover on high-ticket decision points instead of AI-handled responses, targeting 5%+ conversion",
-      "Brief, manage, and report weekly on Meta Ads performance (CPM, CPC, CPR, reach, message conversions) across all Fen-i programmes",
-      "Plan the Fen-i content calendar and brief the content team on bilingual (Thai-first) captions, hook-based reels, and CEO/business-owner-parent targeted messaging",
-      "Own marketing requirements for fenispace.com, landing pages, courses page, registration forms, and coordinate development with Application Support, delivering flowcharts, wireframes, copy, and developer handout docs covering registration flow, placement test flow, and certificate delivery",
-      "Manage GA4 + GTM setup, Meta Pixel installation, and UTM link discipline across every campaign for accurate lead-source attribution",
+      "Briefed, managed, and reported weekly on Meta Ads performance (CPM, CPC, CPR, reach, message conversions) across all Fen-i programmes",
+      "Planned the Fen-i content calendar and briefed the content team on bilingual (Thai-first) captions, hook-based reels, and CEO/business-owner-parent targeted messaging",
+      "Owned marketing requirements for fenispace.com, landing pages, courses page, registration forms, and coordinate development with Application Support, delivering flowcharts, wireframes, copy, and developer handout docs covering registration flow, placement test flow, and certificate delivery",
+      "Managed GA4 + GTM setup, Meta Pixel installation, and UTM link discipline across every campaign for accurate lead-source attribution",
     ],
     outcomes: [
       "Young CEO trial campaign: 11,810 impressions, 8,696 reach, ฿1.45 CPC, ฿50.63 cost/message",
@@ -1152,11 +1152,11 @@ export const PROJECTS: Project[] = [
     client: "Zebra Camp & Pitch International (a Fen-i brand)",
     category: "Marketing & Strategy",
     role: "Marketing Lead & Strategist",
-    period: "2026 – Present",
+    period: "Jun 2026 – Aug 2026",
     summary:
       "Standalone brand campaign for a youth entrepreneurship pitch competition, landing page strategy, 5-step registration funnel, event marketing, and a live paid ad budget.",
     description:
-      "Owns marketing for Zebra Camp & Pitch as its own brand, separate from Fen-i's core programmes, landing page conversion strategy, the multi-step registration flow at fenispace.com/zebra, school roadshow lead generation, sponsor outreach, and a phased paid ad campaign building toward the Sep 4–6 event.",
+      "Owned marketing for Zebra Camp & Pitch as its own brand, separate from Fen-i's core programmes, landing page conversion strategy, the multi-step registration flow at fenispace.com/zebra, school roadshow lead generation, sponsor outreach, and a phased paid ad campaign building toward the Sep 4–6 event.",
     challenge:
       "Zebra needed to launch as a credible standalone brand fast, a live registration site with role-based signup (Student / Parent / School), a phased ad budget to hit registration milestones before a hard registration close (Jul 31), and offline lead generation through school roadshows, all while proving out a category with no direct competitor in Thailand/SEA to benchmark against.",
     journey: [
@@ -1181,7 +1181,7 @@ export const PROJECTS: Project[] = [
       "5-step mobile-first registration flow live at fenispace.com/zebra/register with GTM + GA4 tracking installed",
       "Competitor analysis confirmed no direct competitor for Zebra Pitch's category in Thailand/SEA",
       "Full UTM attribution structure live across organic, paid, email, and WhatsApp channels ahead of ad scale-up",
-      "Gold Sponsorship outreach in progress with Udefined Tech Academy (THB 20,000)",
+      "Gold Sponsorship outreach to Udefined Tech Academy (THB 20,000)",
     ],
     metrics: [
       { value: "91%", label: "Lead Capture Rate" },
@@ -1513,16 +1513,16 @@ export interface PageMeta {
 
 export const PAGE_META: Record<string, PageMeta> = {
   "/": {
-    title: "Saw Jimmy Moore | Marketing Lead & Digital Strategist, Bangkok",
-    description: "Marketing lead and strategist in Bangkok. Social media campaigns, analytics and the web and systems behind them.",
+    title: "Saw Jimmy Moore | Marketing & Tech, Co-founder of CTC, Bangkok",
+    description: "Co-founder of CTC and former marketing lead at Fen-i. Social media campaigns, analytics and the web and systems behind them.",
   },
   "/projects": {
     title: "Work | Saw Jimmy Moore",
     description: "Selected work: social campaigns for Fen-i and Zebra, the MMG and CTC websites, and an Odoo business system.",
   },
   "/about": {
-    title: "About | Saw Jimmy Moore, Marketing Lead, Bangkok",
-    description: "Marketing lead at Fen-i, co-founder of Click to Create. Background in tech, marketing and social media.",
+    title: "About | Saw Jimmy Moore, Co-founder of CTC, Bangkok",
+    description: "Co-founder of Click to Create, former marketing lead at Fen-i. Background in tech, marketing and social media.",
   },
   "/contact": {
     title: "Contact | Saw Jimmy Moore",
@@ -1581,7 +1581,7 @@ export const FEATURED_ORDER = [
 export const WHAT_I_LEAD = [
   {
     title: "Social media & campaigns",
-    text: "Content calendars, paid campaigns and promotion for Fen-i, Zebra, Young CEO and CTC, planned around real program dates.",
+    text: "Content calendars, paid campaigns and promotion, from Zebra Pitch and Young CEO at Fen-i to the CTC pages, planned around real program dates.",
   },
   {
     title: "Marketing strategy & analytics",
