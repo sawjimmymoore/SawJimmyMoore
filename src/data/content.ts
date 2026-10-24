@@ -1,14 +1,14 @@
 export const SITE = {
   name: "Saw Jimmy Moore",
   firstName: "Jimmy",
-  tagline: "Marketing Lead · Social Media Campaigns · Digital & Tech",
+  tagline: "Marketing Lead · Co-founder, CTC · Digital & Tech",
   titles: [
     "Marketing Lead & Strategist",
-    "Social Media Campaigns",
+    "Co-founder, CTC (IT & Tech)",
     "Web & Systems",
   ],
   description:
-    "I lead marketing and social media campaigns for youth education programs in Bangkok, and I build the websites and systems behind them. Marketing, social and tech under one roof, so a campaign never waits on a separate team.",
+    "Co-founder of Click to Create (CTC), where I lead the technology side and build websites and systems such as MMG and Daw Na Yeik. I also lead marketing and social media campaigns at Fen-i.",
   location: "Bangkok, Thailand",
   email: "mjimm.saw@gmail.com",
   phone: "+66 094-316-3065",
@@ -25,18 +25,18 @@ export const WORKING_HOURS = {
 };
 
 export const MESSAGE_SUGGESTIONS = [
-  { label: "I need a new website", template: "Hi Jimmy, I'm looking to get a new website built for my business. Here's a bit about what I have in mind: " },
-  { label: "I need an online store", template: "Hi Jimmy, I want to sell products online and need a real e-commerce store. Here's what I'm selling: " },
-  { label: "I need marketing help", template: "Hi Jimmy, I'm interested in getting help with digital marketing (social media, ads, content). Here's what I'm working with: " },
-  { label: "I need a booking system", template: "Hi Jimmy, I need customers to be able to book appointments online. Here's how booking works for me right now: " },
+  { label: "I'm hiring for a role", template: "Hi Jimmy, I'm hiring for a role and would like to talk about your experience. Here are the details: " },
+  { label: "Lead a social campaign", template: "Hi Jimmy, we are planning a social media campaign and need someone to lead it. Here is what we have in mind: " },
+  { label: "Talk about CTC projects", template: "Hi Jimmy, I'd like to know more about the websites and systems you build at CTC. Here is what I need: " },
+  { label: "Ask for your CV", template: "Hi Jimmy, could you share your CV and a short summary of your campaign work? " },
   { label: "Quick question", template: "Hi Jimmy, quick question: " },
   { label: "Something else", template: "" },
 ];
 
 export const STATS = [
-  { value: "1,400+", label: "Organic visitors in 30 days" },
-  { value: "14K+", label: "Ad impressions in one week" },
-  { value: "6", label: "Countries reached organically" },
+  { value: 7, suffix: "", label: "Websites and systems built" },
+  { value: 4, suffix: "", label: "Brand social pages run" },
+  { value: 2, suffix: "", label: "Bilingual sites, English and Myanmar" },
 ];
 
 export const IMPACT_POINTS = [
@@ -61,9 +61,9 @@ export const IMPACT_POINTS = [
 // chronological account of what I've done. Proof of the track record lives
 // in RESULTS and PROJECTS, this is the pitch, not the CV.
 export const ABOUT_PARAGRAPHS = [
-  "I am the marketing lead and strategist at Fen-i, a Bangkok youth education organization. I plan and run social media and paid campaigns for its programs, including Zebra Pitch and Young CEO, and I manage the content calendars, analytics and coordination that keep them moving.",
-  "I also co-founded Click to Create (CTC), where I handle everything technical: websites, internal systems and automation. That means I can brief, build and measure a campaign myself, from the page it lands on to the numbers that come back.",
-  "Alongside that, I take on selected projects such as the MMG website and a business system for Daw Na Yeik. My background is in tech and marketing, with earlier roles in education coordination that taught me to run events, communicate with families and keep a team on schedule.",
+  "I co-founded Click to Create (CTC) in August 2026 and lead all of its technology: websites, internal systems and automation. The MMG website and the Daw Na Yeik Odoo system are CTC projects that I build and hand over, including training.",
+  "I am also the marketing lead and strategist at Fen-i, where I plan and run social media and paid campaigns for Zebra Pitch, Young CEO and the Fen-i pages, and manage the content calendars and analytics behind them.",
+  "My background is tech and marketing, with earlier roles in education coordination that taught me to run events, communicate clearly and keep a team on schedule. That mix is why I can brief, build and measure a campaign myself, from the page it lands on to the numbers that come back.",
 ];
 
 export interface SkillCategory {
@@ -134,11 +134,12 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    period: "Co-founder",
-    role: "IT & Technology Lead",
+    period: "Aug 2026 – Present",
+    role: "Co-founder, IT & Technology Lead",
     company: "Click to Create (CTC)",
     bullets: [
-      "Co-founded the company and run all of its technical work: websites, systems and automation",
+      "Co-founded the company and lead all of its technical work: websites, systems and automation",
+      "Build and deliver client projects including the MMG website and the Daw Na Yeik Odoo system",
       "Manage CTC's social media pages and built its bilingual website",
     ],
   },
@@ -707,12 +708,13 @@ export const PROJECTS: Project[] = [
   {
     slug: "mmg-website",
     title: "MMG, Migrants Monitoring Group",
-    client: "Migrants Monitoring Group (MMG)",
+    client: "Migrants Monitoring Group (MMG), delivered through CTC",
+    url: "https://mmgmyanmar.org",
     category: "Web & Product",
-    role: "Web Developer",
+    role: "Web Developer, CTC",
     period: "2026",
     summary: "A bilingual (English and Myanmar) website with a staff admin dashboard, built on Next.js and Supabase.",
-    description: "Built the full website for MMG with its own branding, program structure and copy. Staff can edit text and images themselves from an admin dashboard, with no developer needed.",
+    description: "Built through CTC: the full website for MMG with its own branding, program structure and copy. Staff can edit text and images themselves from an admin dashboard, with no developer needed.",
     approach: [
       "English and Myanmar language toggle across the whole site",
       "Admin dashboard where staff edit content, events and contact sections themselves",
@@ -729,9 +731,10 @@ export const PROJECTS: Project[] = [
     slug: "ctc",
     title: "Click to Create (CTC)",
     client: "Click to Create, co-founded",
+    url: "https://ctcmyanmar.com",
     category: "Company & Tech",
     role: "Co-founder, IT & Technology",
-    period: "Co-founder",
+    period: "Aug 2026 – Present",
     summary: "The company I co-founded. I run the technology side and built its bilingual website, admin and social presence.",
     description: "CTC's website is bilingual (English and Burmese) and fully editable through an admin dashboard. I build and maintain it, and I manage the company's social pages.",
     approach: [
@@ -748,9 +751,9 @@ export const PROJECTS: Project[] = [
   {
     slug: "daw-na-yeik",
     title: "Daw Na Yeik, Odoo Business System",
-    client: "Daw Na Yeik, Myanmar",
+    client: "Daw Na Yeik, Myanmar, delivered through CTC",
     category: "Business Systems",
-    role: "Odoo Implementer",
+    role: "Odoo Implementer, CTC",
     period: "2026",
     summary: "Accounting, project budgets, HR, purchasing and approvals in one Odoo system for a Myanmar organization.",
     description: "An Odoo setup that replaces spreadsheets and paper vouchers with one connected system: chart of accounts, project and donor tracking, advances and settlements, purchase approvals and budget against actual.",

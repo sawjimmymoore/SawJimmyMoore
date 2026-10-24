@@ -8,6 +8,8 @@ import BackToTop from "@/components/BackToTop";
 import useSmoothScroll from "@/lib/useSmoothScroll";
 import useDocumentMeta from "@/lib/useDocumentMeta";
 import CookieConsent from "@/components/CookieConsent";
+import ChatWidget from "@/components/ChatWidget";
+import ScrollProgress from "@/components/ScrollProgress";
 import { loadAnalyticsIfConsented, trackPageview } from "@/lib/analytics";
 import { useEffect } from "react";
 
@@ -37,6 +39,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollProgress />
       <ScrollToTop />
       <BackToTop />
       <Header />
@@ -62,6 +65,7 @@ function App() {
         </AnimatePresence>
       </main>
       <Footer />
+      <ChatWidget />
       <CookieConsent />
     </div>
   );

@@ -8,7 +8,7 @@ export default function Footer() {
         <p className="num !text-white/50 mb-4">Get in touch</p>
         <a
           href={`mailto:${SITE.email}`}
-          className="font-black font-extrabold uppercase leading-[0.9] tracking-[-0.02em] text-[clamp(1.5rem,4.6vw,3.75rem)] hover:text-primary-400 transition-colors"
+          className="font-black font-extrabold uppercase leading-[0.9] tracking-[-0.02em] text-[clamp(1.5rem,4.6vw,3.75rem)] hover:text-glow transition-colors"
         >
           {SITE.email}
         </a>
@@ -19,14 +19,16 @@ export default function Footer() {
           </div>
           <div className="space-y-2">
             <p className="text-white/40">Elsewhere</p>
-            <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="block text-white hover:text-primary-400">LinkedIn</a>
-            <a href={`tel:${SITE.phone.replace(/\s|-/g, "")}`} className="block text-white hover:text-primary-400">{SITE.phone}</a>
+            <a href="https://ctcmyanmar.com" target="_blank" rel="noreferrer" className="block text-white hover:text-glow">ctcmyanmar.com</a>
+            <a href="https://mmgmyanmar.org" target="_blank" rel="noreferrer" className="block text-white hover:text-glow">mmgmyanmar.org</a>
+            <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="block text-white hover:text-glow">LinkedIn</a>
+            <a href={`tel:${SITE.phone.replace(/\s|-/g, "")}`} className="block text-white hover:text-glow">{SITE.phone}</a>
           </div>
           <div className="space-y-2">
             <p className="text-white/40">Site</p>
-            <Link to="/projects" className="block text-white hover:text-primary-400">Work</Link>
-            <Link to="/about" className="block text-white hover:text-primary-400">About</Link>
-            <Link to="/privacy" className="block text-white/60 hover:text-primary-400">Privacy</Link>
+            <Link to="/projects" className="block text-white hover:text-glow">Work</Link>
+            <Link to="/about" className="block text-white hover:text-glow">About</Link>
+            <Link to="/privacy" className="block text-white/60 hover:text-glow">Privacy</Link>
           </div>
         </div>
         <p className="mt-12 font-mono text-[10px] uppercase tracking-widest2 text-white/35">

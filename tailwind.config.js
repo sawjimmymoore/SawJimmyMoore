@@ -45,6 +45,7 @@ export default {
           500: "rgb(var(--primary-600) / <alpha-value>)",
           600: "rgb(var(--primary-700) / <alpha-value>)",
         },
+        glow: "#B9CC4F",
         muted: {
           foreground: "rgb(var(--muted-foreground) / <alpha-value>)",
         },
