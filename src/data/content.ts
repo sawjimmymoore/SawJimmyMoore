@@ -35,9 +35,9 @@ export const MESSAGE_SUGGESTIONS = [
 ];
 
 export const STATS = [
-  { value: 7, suffix: "", label: "Websites and systems built" },
+  { value: 62, suffix: "", label: "Leads from one school roadshow" },
   { value: 4, suffix: "", label: "Brand social pages run" },
-  { value: 2, suffix: "", label: "Bilingual sites, English and Myanmar" },
+  { value: 8, suffix: "", label: "Websites and systems built" },
 ];
 
 export const IMPACT_POINTS = [
@@ -274,6 +274,9 @@ export interface Project {
   showcasePages?: ProjectPage[];
   // Static showcase (rendered content, for sites that block iframe embedding)
   staticShowcase?: StaticShowcasePage[];
+  // Real screenshots of the build, shown in a gallery with a lightbox
+  screenshots?: { src: string; caption: string }[];
+  screenshotNote?: string;
 }
 
 // The standard client journey, reused across every case study and on the
@@ -1283,43 +1286,82 @@ export const PROJECTS: Project[] = [
     cover: { gradientFrom: "#1a1a1a", gradientTo: "#3a2a1a" },
   },
   {
-    slug: "gratia-dev-command-center",
-    title: "Gratia Dev Command Center, Internal Business OS",
-    client: "Gratia Dev (self)",
+    slug: "command-center",
+    title: "Business Command Center, Internal Business OS",
+    client: "Self-built internal system",
     category: "Web Application",
     role: "Full-Stack Developer",
     period: "2026",
     summary:
-      "A self-hosted business dashboard built for my own freelance practice, real CRM pipeline, cashflow tracking, and AI-assisted insights, running on infrastructure I own end to end.",
+      "A self-hosted business dashboard with a real login, CRM pipeline, cashflow tracking and AI-assisted insights, running on infrastructure I own end to end.",
     description:
-      "Running a freelance practice across multiple service lines meant pipeline, tasks, and cashflow scattered across spreadsheets. Built a full frontend + backend command center to fix that, proof that I use what I build, not just sell it.",
+      "Pipeline, tasks and cashflow were scattered across spreadsheets, so I built a full frontend and backend command center to bring them into one place. It is a working application with real accounts and data, not a static dashboard mockup.",
     challenge:
-      "No single view of what's actually happening in the business day to day, leads, follow-ups, and cashflow living in disconnected spreadsheets, with nothing rolling up into a clear picture of pipeline health.",
+      "No single view of what is happening in the business day to day: leads, follow-ups and cashflow lived in disconnected spreadsheets, with nothing rolling up into a clear picture of pipeline health.",
     approach: [
-      "Built a real Node.js/Express backend with genuine login, CRUD, and data ownership, not a static dashboard mockup",
-      "Designed a 7-stage CRM pipeline with qualification tracking, in both table and Kanban views, the same pipeline-and-inventory-style workflow a growing business needs for orders, stock, or leads",
-      "Built daily activity logging that automatically rolls up into monthly goal tracking, so nobody has to manually compile a status report",
-      "Integrated an AI Insights feature querying real pipeline and cashflow data",
-    ],
-    journey: [
-      { step: "01", title: "The Problem", description: "Pipeline and cashflow scattered across spreadsheets, no single source of truth." },
-      { step: "02", title: "Build", description: "A real backend: login, CRM pipeline, daily logging, cashflow, AI insights." },
-      { step: "03", title: "Result", description: "One system replacing scattered spreadsheets, self-hosted, fully owned." },
+      "Node.js and Express backend with role-based login (admin with full access, viewer read-only), a REST API and a JSON-file database",
+      "A 7-stage CRM pipeline in table and Kanban views, with qualification tracking, filters and a live funnel breakdown",
+      "Daily activity logging that rolls up automatically into monthly goal tracking, so nobody compiles a status report by hand",
+      "Tasks board, outreach log, client directory, service catalog and build status tracker",
+      "Cashflow with period filters, invoices with Draft, Sent, Paid and Overdue states, and a runway and debt payoff tracker",
+      "Reports with revenue by month, CSV and Excel import and export, plus full backup and restore",
+      "An AI Insights feature that runs an evaluation over real pipeline and cashflow data using the owner's own API key",
     ],
     outcomes: [
-      "Single source of truth for pipeline, tasks, and cashflow",
-      "Self-hosted, full data ownership, no SaaS subscription dependency",
+      "One source of truth for pipeline, tasks and cashflow",
+      "Self-hosted with full data ownership and no SaaS subscription dependency",
       "Daily logging habit reinforced by automatic goal roll-up",
-      "The same pipeline/inventory/workflow-dashboard pattern this was built on is exactly what gets adapted for a client's own order tracking, stock levels, or lead pipeline",
+      "A reusable pattern for pipeline, inventory and workflow dashboards",
     ],
     metrics: [
+      { value: "15", label: "Modules" },
       { value: "7", label: "Pipeline Stages" },
       { value: "100%", label: "Self-Hosted" },
     ],
     tags: ["Node.js", "Express", "CRM", "Internal Tools", "AI Integration"],
-    tools: ["Node.js", "Express", "AI API Integration"],
-    logo: "/images/logos/gratia-dev-logo.png",
+    tools: ["Node.js", "Express", "Chart.js", "Vanilla JavaScript", "AI API Integration"],
     cover: { gradientFrom: "#0f1a14", gradientTo: "#1e3a2a" },
+    screenshotNote: "Screens shown with sample data.",
+    screenshots: [
+      { src: "/images/projects/command-center/overview.jpg", caption: "Overview: KPI cards, daily targets, cash balance and leads by stage" },
+      { src: "/images/projects/command-center/pipeline.jpg", caption: "Pipeline: lead CRM with funnel breakdown, filters and inline stage changes" },
+      { src: "/images/projects/command-center/kanban.jpg", caption: "Kanban view of the 7-stage pipeline" },
+      { src: "/images/projects/command-center/cashflow.jpg", caption: "Cashflow: income and expenses with period filters" },
+      { src: "/images/projects/command-center/reports.jpg", caption: "Reports: revenue by month and leads by business line" },
+      { src: "/images/projects/command-center/ai-insights.jpg", caption: "AI Insights: evaluation over live pipeline and cashflow data" },
+    ],
+  },
+  {
+    slug: "naw-gay-gay-portfolio",
+    title: "Naw Gay Gay, Portfolio Site",
+    client: "Naw Gay Gay",
+    category: "Web & Product",
+    role: "Web Developer",
+    period: "2026",
+    url: "https://naw-gay-gay-portfolio.vercel.app",
+    summary:
+      "A five-page personal site for an educator and youth advocate, with a story timeline, an impact page and a photo gallery with lightbox.",
+    description:
+      "Designed and built a complete multi-page portfolio in HTML, CSS and JavaScript, deployed on Vercel. It tells a personal story clearly: who she is, the path she took, the programs she has run, and how to reach her.",
+    approach: [
+      "Five pages: Home, About, Journey, Impact and Contact, with one consistent navigation and layout",
+      "A journey page that maps eighteen years as a single continuous timeline",
+      "An impact page covering community projects, certifications and a photo gallery with a lightbox viewer",
+      "Scroll-reveal animations, a responsive mobile menu and a contact form",
+      "Static build with no framework, so it loads fast and is simple to host and update",
+    ],
+    metrics: [
+      { value: "5", label: "Pages" },
+      { value: "0", label: "Frameworks, plain HTML/CSS/JS" },
+    ],
+    tags: ["HTML", "CSS", "JavaScript", "Portfolio", "Vercel"],
+    tools: ["HTML", "CSS", "JavaScript", "Vercel"],
+    cover: { gradientFrom: "#1f2d22", gradientTo: "#b8862b" },
+    screenshots: [
+      { src: "/images/projects/naw/home.jpg", caption: "Home: hero, headline and milestone strip" },
+      { src: "/images/projects/naw/journey.jpg", caption: "Journey: eighteen years as one timeline" },
+      { src: "/images/projects/naw/impact.jpg", caption: "Impact: projects, certifications and gallery" },
+    ],
   },
 ];
 
@@ -1576,7 +1618,8 @@ export const FEATURED_ORDER = [
   "de-fabiano",
   "mtss-myittasonesee",
   "hazel-portfolio",
-  "gratia-dev-command-center",
+  "naw-gay-gay-portfolio",
+  "command-center",
 ];
 
 export const WHAT_I_LEAD = [

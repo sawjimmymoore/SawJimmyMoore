@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
@@ -37,6 +37,7 @@ export default function ProjectDetail() {
         {!project.staticShowcase && project.showcasePages && project.showcasePages.length > 0 && (
           <SiteShowcase pages={project.showcasePages} projectTitle={project.title} url={project.url} />
         )}
+        {project.screenshots && project.screenshots.length > 0 && <Screens shots={project.screenshots} note={project.screenshotNote} />}
         {project.outcomes && <Outcomes outcomes={project.outcomes} />}
         <Meta project={project} />
         <Nav project={project} />
@@ -558,6 +559,54 @@ function Meta({ project }: { project: Project }) {
         >
           Visit live site <ArrowUpRight size={14} />
         </a>
+      )}
+    </Section>
+  );
+}
+
+/* ── SCREENSHOT GALLERY ───────────────────────────────────── */
+function Screens({ shots, note }: { shots: { src: string; caption: string }[]; note?: string }) {
+  const [open, setOpen] = useState<number | null>(null);
+  useEffect(() => {
+    if (open === null) return;
+    const on = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(null);
+      if (e.key === "ArrowRight") setOpen((i) => (i === null ? i : (i + 1) % shots.length));
+      if (e.key === "ArrowLeft") setOpen((i) => (i === null ? i : (i - 1 + shots.length) % shots.length));
+    };
+    window.addEventListener("keydown", on);
+    return () => window.removeEventListener("keydown", on);
+  }, [open, shots.length]);
+
+  return (
+    <Section label="Screens">
+      <div className="grid gap-5 md:grid-cols-2">
+        {shots.map((s, i) => (
+          <motion.button
+            key={s.src}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-8%" }}
+            transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
+            onClick={() => setOpen(i)}
+            className={`group overflow-hidden rounded-2xl border border-parchment-100/15 bg-bg-card text-left transition-colors hover:border-primary-400 ${i === 0 && shots.length % 2 === 1 ? "md:col-span-2" : ""}`}
+          >
+            <div className="overflow-hidden">
+              <img src={s.src} alt={s.caption} loading="lazy" className="w-full transition-transform duration-700 group-hover:scale-[1.03]" />
+            </div>
+            <p className="px-5 py-4 text-[13px] text-muted-foreground">{s.caption}</p>
+          </motion.button>
+        ))}
+      </div>
+      {note && <p className="mt-4 font-mono text-[10px] uppercase tracking-widest2 text-muted-foreground">{note}</p>}
+      {open !== null && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/90 p-4" onClick={() => setOpen(null)}>
+          <button className="absolute right-5 top-5 text-3xl text-white" aria-label="Close" onClick={() => setOpen(null)}>&times;</button>
+          <figure className="max-w-6xl" onClick={(e) => e.stopPropagation()}>
+            <img src={shots[open].src} alt={shots[open].caption} className="max-h-[80vh] w-full rounded-lg object-contain" />
+            <figcaption className="mt-3 text-center text-sm text-white/70">{shots[open].caption} ({open + 1}/{shots.length})</figcaption>
+          </figure>
+        </div>
       )}
     </Section>
   );
