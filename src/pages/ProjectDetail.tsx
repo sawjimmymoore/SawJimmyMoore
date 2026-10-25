@@ -119,6 +119,17 @@ function ProjectHero({ project }: { project: Project }) {
             {project.summary}
           </motion.p>
 
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
+              className="mb-8 inline-flex items-center gap-2 rounded-full bg-glow px-5 py-2.5 text-[13.5px] font-semibold text-ink-900 transition-colors hover:bg-white"
+            >
+              {project.url.replace("https://", "")} <ArrowUpRight size={14} />
+            </a>
+          )}
+
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

@@ -12,6 +12,7 @@ export const SITE = {
   location: "Bangkok, Thailand",
   email: "mjimm.saw@gmail.com",
   phone: "+66 094-316-3065",
+  phoneMyanmar: "+959 440 600 106",
   languages: "Burmese (Native) · English (Advanced)",
   linkedin: "https://linkedin.com/in/jimmy-moore-742b75214",
   status: "Open to opportunities",

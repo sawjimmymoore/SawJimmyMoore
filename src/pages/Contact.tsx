@@ -171,7 +171,10 @@ export default function Contact() {
                   <Mail size={13} /> {SITE.email}
                 </a>
                 <a href={`tel:${SITE.phone.replace(/[^+\d]/g, "")}`} className="flex items-center gap-1.5 text-parchment-300 hover:text-primary-500 transition-colors">
-                  <Phone size={13} /> {SITE.phone}
+                  <Phone size={13} /> {SITE.phone} (TH)
+                </a>
+                <a href={`tel:${SITE.phoneMyanmar.replace(/[^+\d]/g, "")}`} className="flex items-center gap-1.5 text-parchment-300 hover:text-primary-500 transition-colors">
+                  <Phone size={13} /> {SITE.phoneMyanmar} (MM)
                 </a>
                 <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-parchment-300 hover:text-primary-500 transition-colors">
                   <Linkedin size={13} /> LinkedIn

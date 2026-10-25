@@ -19,10 +19,9 @@ export default function Footer() {
           </div>
           <div className="space-y-2">
             <p className="text-white/40">Elsewhere</p>
-            <a href="https://ctcmyanmar.com" target="_blank" rel="noreferrer" className="block text-white hover:text-glow">ctcmyanmar.com</a>
-            <a href="https://mmgmyanmar.org" target="_blank" rel="noreferrer" className="block text-white hover:text-glow">mmgmyanmar.org</a>
             <a href={SITE.linkedin} target="_blank" rel="noreferrer" className="block text-white hover:text-glow">LinkedIn</a>
-            <a href={`tel:${SITE.phone.replace(/\s|-/g, "")}`} className="block text-white hover:text-glow">{SITE.phone}</a>
+            <a href={`tel:${SITE.phone.replace(/\s|-/g, "")}`} className="block text-white hover:text-glow">{SITE.phone} (TH)</a>
+            <a href={`tel:${SITE.phoneMyanmar.replace(/\s/g, "")}`} className="block text-white hover:text-glow">{SITE.phoneMyanmar} (MM)</a>
           </div>
           <div className="space-y-2">
             <p className="text-white/40">Site</p>
