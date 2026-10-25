@@ -77,7 +77,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="relative pt-32 pb-24 px-6 min-h-[100vh]">
+    <div className="relative pt-24 md:pt-32 pb-28 md:pb-24 px-4 md:px-6 min-h-[100vh]">
       <div className="fixed inset-0 -z-[3]">
         <DitherReveal
           image={{ src: "/images/hero/jimmy-hero.jpg" }}

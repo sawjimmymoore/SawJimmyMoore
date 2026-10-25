@@ -19,7 +19,7 @@ export default function About() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-      <section className="relative bg-ink-900 text-white pt-32 pb-24 overflow-hidden">
+      <section className="relative bg-ink-900 text-white pt-24 md:pt-32 pb-14 md:pb-24 overflow-hidden">
         <div className="absolute inset-0 opacity-50"><AsciiWave ink="#B9CC4F" cell={12} fill={7} push={12} speed={6} clickIntensity={50} /></div>
         <div className="container-page relative">
           <p className="num !text-white/60 mb-4">About</p>
@@ -27,7 +27,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="container-page py-20 md:py-28 grid gap-10 md:grid-cols-[1fr_1.6fr]">
+      <section className="container-page py-12 md:py-28 grid gap-10 md:grid-cols-[1fr_1.6fr]">
         <p className="num md:sticky md:top-28 self-start">01 / Profile</p>
         <div>
           <ScrollTextHighlight text={ABOUT_PARAGRAPHS[0]} className="text-[clamp(1.3rem,2.6vw,2rem)] font-semibold leading-snug mb-10" />
@@ -41,16 +41,16 @@ export default function About() {
       </section>
 
       <section className="container-page pb-16">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-3 gap-2 md:gap-6">
           {[
             { v: 8, l: "Websites and systems built" },
             { v: 4, l: "Brand social pages run" },
             { v: 3, l: "Programmes marketed end to end" },
           ].map((s, i) => (
             <motion.div key={s.l} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <TiltCard className="border border-parchment-100/15 bg-bg-card p-7 hover:border-primary-400 transition-colors">
-                <p className="display text-6xl text-primary-400"><CountUp to={s.v} /></p>
-                <p className="mt-3 font-mono text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.l}</p>
+              <TiltCard className="border border-parchment-100/15 bg-bg-card p-3 md:p-7 hover:border-primary-400 transition-colors">
+                <p className="display text-4xl md:text-6xl text-primary-400"><CountUp to={s.v} /></p>
+                <p className="mt-2 md:mt-3 font-mono text-[9px] leading-snug md:text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.l}</p>
               </TiltCard>
             </motion.div>
           ))}
@@ -58,14 +58,14 @@ export default function About() {
       </section>
 
       {/* TABS */}
-      <section className="container-page pb-24">
+      <section className="container-page pb-16 md:pb-24">
         <p className="num mb-6">02 / Detail</p>
-        <div className="mb-10 inline-flex border border-parchment-100/20 p-1">
+        <div className="mb-8 flex w-full md:w-auto md:inline-flex border border-parchment-100/20 p-1">
           {TABS.map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className="relative px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest2"
+              className="relative flex-1 md:flex-none px-3 md:px-5 py-3 md:py-2.5 font-mono text-[11px] uppercase tracking-widest2"
             >
               {tab === t && <motion.span layoutId="tab-pill" className="absolute inset-0 bg-primary-400" />}
               <span className={`relative ${tab === t ? "text-on-primary" : ""}`}>{t}</span>

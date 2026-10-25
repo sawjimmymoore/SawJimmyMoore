@@ -8,7 +8,6 @@ import Magnetic from "@/components/Magnetic";
 import TiltCard from "@/components/TiltCard";
 import CountUp from "@/components/CountUp";
 import ScrollTextHighlight from "@/components/effects/ScrollTextHighlight";
-import AsciiWave from "@/components/effects/AsciiWave";
 
 const ORGS = ["Fen-i", "Zebra Pitch", "Young CEO", "Click to Create", "MMG", "Daw Na Yeik", "De Fabiano"];
 const STATEMENT =
@@ -25,7 +24,7 @@ export default function Home() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
       {/* HERO */}
-      <section ref={heroRef} className="relative min-h-[100svh] bg-ink-900 text-white overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[92svh] md:min-h-[100svh] bg-ink-900 text-white overflow-hidden">
         <motion.img
           src="/images/hero/jimmy-hero.jpg"
           alt="Saw Jimmy Moore"
@@ -33,7 +32,7 @@ export default function Home() {
           className="absolute inset-0 h-[115%] w-full object-cover object-[62%_30%] grayscale opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/40 to-ink-900/70" />
-        <div className="container-page relative flex min-h-[100svh] flex-col justify-end pb-12 pt-28">
+        <div className="container-page relative flex min-h-[92svh] md:min-h-[100svh] flex-col justify-end pb-28 md:pb-12 pt-24 md:pt-28">
           <motion.div style={{ y: titleY }}>
             <p className="num !text-white/60 mb-6">{SITE.location} · {SITE.titles[0]} · {SITE.titles[1]}</p>
             <h1 className="display text-[clamp(3rem,11vw,9rem)]">
@@ -44,7 +43,7 @@ export default function Home() {
           </motion.div>
           <div className="mt-10 flex flex-col gap-8 border-t border-white/20 pt-6 md:flex-row md:items-end md:justify-between">
             <p className="max-w-xl text-[15px] leading-relaxed text-white/75">{SITE.description}</p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 [&>*]:flex-1 md:[&>*]:flex-none">
               <Magnetic><Link to="/projects" className="btn-solid !bg-glow !text-ink-900 hover:!bg-white">View work</Link></Magnetic>
               <Link to="/contact" className="btn-line text-white hover:!bg-glow hover:!text-ink-900 hover:!border-glow">Book a call</Link>
             </div>
@@ -68,13 +67,13 @@ export default function Home() {
       </section>
 
       {/* STATEMENT, words light up on scroll */}
-      <section className="container-page py-24 md:py-36">
+      <section className="container-page py-14 md:py-36">
         <p className="num mb-8">00 / In one line</p>
         <ScrollTextHighlight text={STATEMENT} className="font-black font-extrabold text-[clamp(1.8rem,5vw,4rem)] leading-[1.05] tracking-tight max-w-5xl" />
       </section>
 
       {/* 01 FOCUS */}
-      <section className="container-page pb-24 md:pb-32">
+      <section className="container-page pb-14 md:pb-32">
         <div className="grid gap-12 md:grid-cols-[1fr_1.4fr]">
           <div className="md:sticky md:top-28 self-start">
             <p className="num mb-4">01 / Focus</p>
@@ -106,9 +105,9 @@ export default function Home() {
       </section>
 
       {/* 02 NUMBERS */}
-      <section className="container-page py-24 md:py-32">
-        <p className="num mb-10">02 / At a glance</p>
-        <div className="grid gap-6 md:grid-cols-3">
+      <section className="container-page py-14 md:py-32">
+        <p className="num mb-6 md:mb-10">02 / At a glance</p>
+        <div className="grid grid-cols-3 gap-2 md:gap-6">
           {STATS.map((s, i) => (
             <motion.div
               key={s.label}
@@ -117,9 +116,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
             >
-              <TiltCard className="h-full border border-parchment-100/15 bg-bg-card p-8 transition-colors hover:border-primary-400">
-                <p className="display text-7xl md:text-8xl text-primary-400"><CountUp to={s.value} suffix={s.suffix} /></p>
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.label}</p>
+              <TiltCard className="h-full border border-parchment-100/15 bg-bg-card p-3 md:p-8 transition-colors hover:border-primary-400">
+                <p className="display text-4xl md:text-8xl text-primary-400"><CountUp to={s.value} suffix={s.suffix} /></p>
+                <p className="mt-2 md:mt-4 font-mono text-[9px] leading-snug md:text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.label}</p>
               </TiltCard>
             </motion.div>
           ))}
@@ -128,19 +127,39 @@ export default function Home() {
 
       {/* Dark area: each section has its own ASCII water pool behind it. The
           effect listens on window, so content above it never blocks the pointer. */}
-      <div className="relative overflow-hidden bg-ink-900">
+      <div className="bg-ink-900">
       {/* 03 WORK */}
-      <section className="relative text-white py-24 md:py-32">
-        <div className="absolute inset-0 opacity-45"><AsciiWave ink="#B9CC4F" cell={11} fill={10} push={14} speed={7} clickIntensity={55} /></div>
+      <section className="relative text-white py-16 md:py-32">
         <div className="container-page relative">
-          <div className="mb-14 flex items-end justify-between">
+          <div className="mb-8 md:mb-14 flex items-end justify-between">
             <div>
               <p className="num !text-white/50 mb-4">03 / Selected work</p>
               <h2 className="display text-4xl md:text-6xl"><RevealText text="Projects" /></h2>
             </div>
             <Link to="/projects" className="hidden md:inline-flex btn-line text-white hover:!bg-glow hover:!text-ink-900 hover:!border-glow">All work</Link>
           </div>
-          <div>
+          {/* Phones: swipeable cards instead of a long vertical list */}
+          <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-4 md:hidden [scrollbar-width:none]">
+            {featured.map((p, i) => (
+              <Link
+                key={p.slug}
+                to={`/projects/${p.slug}`}
+                className="relative flex h-56 w-[72%] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl p-5"
+                style={{ background: `linear-gradient(135deg, ${p.cover.gradientFrom}, ${p.cover.gradientTo})` }}
+              >
+                <span className="font-mono text-[10px] uppercase tracking-widest2 text-white/70">{String(i + 1).padStart(2, "0")} · {p.category}</span>
+                <div className="flex items-end justify-between gap-3">
+                  <span className="font-black font-extrabold uppercase text-2xl leading-[0.95] text-white">{p.title.split(",")[0]}</span>
+                  <ArrowUpRight className="shrink-0 text-white" />
+                </div>
+              </Link>
+            ))}
+            <Link to="/projects" className="flex h-56 w-[48%] shrink-0 snap-start flex-col items-center justify-center gap-2 rounded-2xl border border-white/25 font-mono text-[11px] uppercase tracking-widest2 text-white">
+              All work <ArrowUpRight size={18} />
+            </Link>
+          </div>
+
+          <div className="hidden md:block">
             {featured.map((p, i) => (
               <motion.div
                 key={p.slug}
@@ -166,24 +185,6 @@ export default function Home() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative text-white">
-        <div className="absolute inset-0 opacity-50"><AsciiWave ink="#B9CC4F" cell={11} fill={9} push={14} speed={7} clickIntensity={55} /></div>
-        <div className="container-page relative flex flex-col gap-8 pb-28 pt-16 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="num !text-white/60 mb-4">Move the cursor. Click the water.</p>
-            <h2 className="display text-5xl md:text-8xl">Hiring or planning<br />a campaign?</h2>
-            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/70">Let's talk. I lead social campaigns and build the web and systems behind them.</p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-glow px-7 py-4 font-mono text-[11px] uppercase tracking-widest2 text-ink-900 hover:bg-white transition-colors">
-              Book a call <ArrowUpRight size={16} />
-            </Link>
-            <a href={`mailto:${SITE.email}`} className="btn-line text-white hover:!bg-white hover:!text-ink-900 hover:!border-white">Email me</a>
           </div>
         </div>
       </section>

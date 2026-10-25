@@ -10,6 +10,7 @@ import useDocumentMeta from "@/lib/useDocumentMeta";
 import CookieConsent from "@/components/CookieConsent";
 import ChatWidget from "@/components/ChatWidget";
 import ScrollProgress from "@/components/ScrollProgress";
+import MobileNav from "@/components/MobileNav";
 import { loadAnalyticsIfConsented, trackPageview } from "@/lib/analytics";
 import { useEffect } from "react";
 
@@ -65,6 +66,7 @@ function App() {
         </AnimatePresence>
       </main>
       <Footer />
+      <MobileNav />
       <ChatWidget />
       <CookieConsent />
     </div>

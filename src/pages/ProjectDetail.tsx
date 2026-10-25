@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import CtaBlock from "@/components/CtaBlock";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
@@ -43,7 +42,6 @@ export default function ProjectDetail() {
         <Meta project={project} />
         <Nav project={project} />
       </div>
-      <CtaBlock title="Like what you see? Let's talk." sub="Hiring for a project lead or planning a campaign? I can take it from brief to launch." />
     </motion.div>
   );
 }
@@ -582,7 +580,7 @@ function Screens({ shots, note }: { shots: { src: string; caption: string }[]; n
 
   return (
     <Section label="Screens">
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 [scrollbar-width:none]">
         {shots.map((s, i) => (
           <motion.button
             key={s.src}
@@ -591,7 +589,7 @@ function Screens({ shots, note }: { shots: { src: string; caption: string }[]; n
             viewport={{ once: true, margin: "-8%" }}
             transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
             onClick={() => setOpen(i)}
-            className={`group overflow-hidden rounded-2xl border border-parchment-100/15 bg-bg-card text-left transition-colors hover:border-primary-400 ${i === 0 && shots.length % 2 === 1 ? "md:col-span-2" : ""}`}
+            className={`group w-[85%] shrink-0 snap-center overflow-hidden rounded-2xl border border-parchment-100/15 bg-bg-card text-left transition-colors hover:border-primary-400 md:w-auto md:shrink ${i === 0 && shots.length % 2 === 1 ? "md:col-span-2" : ""}`}
           >
             <div className="overflow-hidden">
               <img src={s.src} alt={s.caption} loading="lazy" className="w-full transition-transform duration-700 group-hover:scale-[1.03]" />

@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { PROJECTS, FEATURED_ORDER, type Project } from "@/data/content";
 import RevealText from "@/components/RevealText";
-import CtaBlock from "@/components/CtaBlock";
 
 function Cell({ p, i }: { p: Project; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,7 +29,7 @@ function Cell({ p, i }: { p: Project; i: number }) {
     >
       {/* top rule draws itself as the card scrolls in */}
       <motion.span style={{ scaleX: lineScale }} className="absolute left-0 top-0 z-10 h-[2px] w-full origin-left bg-primary-400" />
-      <Link to={`/projects/${p.slug}`} onMouseMove={spot} className="group relative block overflow-hidden p-8 md:p-10 min-h-[19rem]">
+      <Link to={`/projects/${p.slug}`} onMouseMove={spot} className="group relative block h-full overflow-hidden p-4 md:p-10 min-h-[9.5rem] md:min-h-[19rem]">
         {/* colour wipes up from the bottom on hover */}
         <span
           className="absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
@@ -44,7 +43,7 @@ function Cell({ p, i }: { p: Project; i: number }) {
         {/* ghost number drifts at its own speed */}
         <motion.span
           style={{ y: ghostY }}
-          className="pointer-events-none absolute -bottom-6 right-4 select-none font-black font-extrabold text-[9rem] leading-none text-parchment-100/[0.06] transition-colors group-hover:text-white/10"
+          className="pointer-events-none absolute -bottom-6 right-4 hidden select-none md:block font-black font-extrabold text-[5rem] md:text-[9rem] leading-none text-parchment-100/[0.06] transition-colors group-hover:text-white/10"
         >
           {String(i + 1).padStart(2, "0")}
         </motion.span>
@@ -53,14 +52,14 @@ function Cell({ p, i }: { p: Project; i: number }) {
             <img src={p.logo} alt="" className="max-h-full max-w-full object-contain" />
           </span>
         )}
-        <div className="relative flex h-full min-h-[15rem] flex-col justify-between transition-colors duration-300 group-hover:text-white">
+        <div className="relative flex h-full min-h-[7.5rem] md:min-h-[15rem] flex-col justify-between transition-colors duration-300 group-hover:text-white">
           <div className="flex items-start justify-between">
-            <span className="num group-hover:!text-white/70">{String(i + 1).padStart(2, "0")} · {p.category}</span>
-            <ArrowUpRight className="opacity-40 transition-all duration-300 group-hover:rotate-45 group-hover:opacity-100" />
+            <span className="num !text-[9px] md:!text-[11px] group-hover:!text-white/70">{String(i + 1).padStart(2, "0")} · {p.category}</span>
+            <ArrowUpRight className="hidden md:block opacity-40 transition-all duration-300 group-hover:rotate-45 group-hover:opacity-100" />
           </div>
           <div>
-            <h2 className="display mb-3 text-3xl transition-transform duration-500 group-hover:translate-x-2 md:text-4xl">{p.title.split(",")[0]}</h2>
-            <p className="max-w-md text-[14px] leading-relaxed text-muted-foreground group-hover:text-white/80">{p.summary}</p>
+            <h2 className="display mb-1 md:mb-3 text-lg leading-[0.95] transition-transform duration-500 group-hover:translate-x-2 sm:text-2xl md:text-4xl">{p.title.split(",")[0]}</h2>
+            <p className="hidden md:block max-w-md text-[14px] leading-relaxed text-muted-foreground group-hover:text-white/80">{p.summary}</p>
           </div>
         </div>
       </Link>
@@ -77,7 +76,7 @@ export default function Projects() {
   const names = list.map((p) => p.title.split(",")[0]);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="pt-32">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="pt-24 md:pt-32 pb-24">
       <div className="container-page">
         <div ref={heroRef} className="mb-12">
           <p className="num mb-4">Work · ({String(list.length).padStart(2, "0")})</p>
@@ -103,12 +102,12 @@ export default function Projects() {
       </div>
 
       <div className="container-page">
-        <div className="grid gap-px bg-parchment-100/15 md:grid-cols-2">
+        <div className="grid grid-cols-2 gap-px bg-parchment-100/15">
           {list.map((p, i) => <Cell key={p.slug} p={p} i={i} />)}
           {/* fills the last cell when the count is odd, so no empty block shows */}
           {list.length % 2 === 1 && (
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="bg-glow text-ink-900">
-              <Link to="/contact" className="group flex h-full min-h-[19rem] flex-col justify-between p-8 md:p-10">
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="col-span-2 bg-glow text-ink-900">
+              <Link to="/contact" className="group flex h-full min-h-[10rem] md:min-h-[19rem] flex-col justify-between p-8 md:p-10">
                 <span className="font-mono text-[11px] uppercase tracking-widest2 text-ink-900/60">Next project</span>
                 <div className="flex items-end justify-between gap-4">
                   <span className="display text-4xl md:text-6xl">Let's talk</span>
@@ -119,7 +118,6 @@ export default function Projects() {
           )}
         </div>
       </div>
-      <div className="mt-24"><CtaBlock /></div>
     </motion.div>
   );
 }
