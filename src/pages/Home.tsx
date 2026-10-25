@@ -8,6 +8,7 @@ import TiltCard from "@/components/TiltCard";
 import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
 import ScrollMarquee from "@/components/ScrollMarquee";
+import Mark from "@/components/Mark";
 import BentoGrid from "@/components/BentoGrid";
 import ScrollTextHighlight from "@/components/effects/ScrollTextHighlight";
 
@@ -117,7 +118,7 @@ export default function Home() {
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-12">
           <div className="self-start md:sticky md:top-28">
             <Reveal variant="left"><p className="num mb-4">01 / Focus</p></Reveal>
-            <h2 className="display text-4xl md:text-6xl"><RevealText text="What I lead" /></h2>
+            <h2 className="display text-4xl md:text-6xl"><RevealText text="What I" /> <Mark color="sun">lead</Mark></h2>
           </div>
           <div>
             {WHAT_I_LEAD.map((w, i) => (
@@ -134,7 +135,7 @@ export default function Home() {
           {STATS.map((s, i) => (
             <Reveal key={s.label} variant="scale" delay={i * 0.12}>
               <TiltCard className="h-full border border-parchment-100/15 bg-bg-card p-3 transition-colors hover:border-primary-400 md:p-8">
-                <p className="display text-4xl text-primary-400 md:text-8xl"><CountUp to={s.value} suffix={s.suffix} /></p>
+                <p className={`display text-4xl md:text-8xl ${["text-primary-400", "text-teal", "text-coral"][i % 3]}`}><CountUp to={s.value} suffix={s.suffix} /></p>
                 <p className="mt-2 font-mono text-[9px] uppercase leading-snug tracking-widest2 text-muted-foreground md:mt-4 md:text-[11px]">{s.label}</p>
               </TiltCard>
             </Reveal>
@@ -148,7 +149,7 @@ export default function Home() {
           <div className="mb-8 flex items-end justify-between md:mb-12">
             <div>
               <Reveal variant="left"><p className="num mb-4 !text-white/50">03 / Selected work</p></Reveal>
-              <h2 className="display text-4xl md:text-6xl"><RevealText text="Projects" /></h2>
+              <h2 className="display text-4xl md:text-6xl"><RevealText text="Selected" /> <Mark kind="underline" color="teal">projects</Mark></h2>
             </div>
             <Link to="/projects" className="btn-line hidden text-white hover:!border-glow hover:!bg-glow hover:!text-ink-900 md:inline-flex">All work</Link>
           </div>

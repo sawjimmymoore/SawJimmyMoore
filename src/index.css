@@ -24,6 +24,9 @@
     --primary-700: 50 58 15;
     --muted-foreground: 100 100 96;
     --on-primary: 255 255 255;
+    --sun: 245 165 36;
+    --teal: 13 148 136;
+    --coral: 226 78 102;
     --accent-warm: 98 112 34;
     --header-bg: 244 242 237;
     --header-text: 12 12 12;
@@ -53,6 +56,9 @@
     --primary-700: 110 125 34;
     --muted-foreground: 150 150 144;
     --on-primary: 12 12 12;
+    --sun: 255 190 70;
+    --teal: 45 212 191;
+    --coral: 255 122 138;
     --accent-warm: 185 204 79;
     --header-bg: 10 10 10;
     --header-text: 240 240 236;

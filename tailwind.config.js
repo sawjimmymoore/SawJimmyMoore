@@ -46,6 +46,9 @@ export default {
           600: "rgb(var(--primary-700) / <alpha-value>)",
         },
         glow: "#B9CC4F",
+        sun: "rgb(var(--sun) / <alpha-value>)",
+        teal: "rgb(var(--teal) / <alpha-value>)",
+        coral: "rgb(var(--coral) / <alpha-value>)",
         muted: {
           foreground: "rgb(var(--muted-foreground) / <alpha-value>)",
         },

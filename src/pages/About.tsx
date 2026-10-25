@@ -7,7 +7,7 @@ import ScrollMarquee from "@/components/ScrollMarquee";
 import TiltCard from "@/components/TiltCard";
 import CountUp from "@/components/CountUp";
 import ScrollTextHighlight from "@/components/effects/ScrollTextHighlight";
-import AsciiWave from "@/components/effects/AsciiWave";
+import Mark from "@/components/Mark";
 
 const TABS = ["Experience", "Toolkit", "Education"] as const;
 
@@ -21,11 +21,12 @@ export default function About() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-      <section className="relative bg-ink-900 text-white pt-24 md:pt-32 pb-14 md:pb-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-50"><AsciiWave ink="#B9CC4F" cell={12} fill={7} push={12} speed={6} clickIntensity={50} /></div>
+      <section className="relative overflow-hidden bg-ink-900 pb-14 pt-24 text-white md:pb-24 md:pt-32">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-sun/20 blur-3xl md:h-[28rem] md:w-[28rem]" />
+        <div className="pointer-events-none absolute -bottom-32 left-10 h-64 w-64 rounded-full bg-teal/15 blur-3xl" />
         <div className="container-page relative">
           <Reveal variant="left"><p className="num !text-white/60 mb-4">About</p></Reveal>
-          <h1 className="display text-5xl md:text-8xl"><RevealText text="Marketing, social, tech." /></h1>
+          <h1 className="display text-5xl md:text-8xl"><RevealText text="Marketing," /> <Mark kind="circle" color="coral">social</Mark><RevealText text=", tech." /></h1>
         </div>
       </section>
 
@@ -47,13 +48,13 @@ export default function About() {
       <section className="container-page pb-16">
         <div className="grid grid-cols-3 gap-2 md:gap-6">
           {[
-            { v: 8, l: "Websites and systems built" },
-            { v: 4, l: "Brand social pages run" },
-            { v: 3, l: "Programmes marketed end to end" },
+            { v: 8, l: "Websites and systems built", c: "text-primary-400" },
+            { v: 4, l: "Brand social pages run", c: "text-teal" },
+            { v: 3, l: "Programmes marketed end to end", c: "text-coral" },
           ].map((s, i) => (
             <motion.div key={s.l} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <TiltCard className="border border-parchment-100/15 bg-bg-card p-3 md:p-7 hover:border-primary-400 transition-colors">
-                <p className="display text-4xl md:text-6xl text-primary-400"><CountUp to={s.v} /></p>
+                <p className={`display text-4xl md:text-6xl ${s.c}`}><CountUp to={s.v} /></p>
                 <p className="mt-2 md:mt-3 font-mono text-[9px] leading-snug md:text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.l}</p>
               </TiltCard>
             </motion.div>
@@ -116,7 +117,7 @@ export default function About() {
               <div className="grid gap-5 md:grid-cols-2">
                 {skills.map((s, i) => (
                   <motion.div key={s.category} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}>
-                    <TiltCard className="h-full border border-parchment-100/15 bg-bg-card p-7 hover:border-primary-400 transition-colors">
+                    <TiltCard className={`h-full border border-parchment-100/15 border-t-4 ${["border-t-primary-400", "border-t-sun", "border-t-teal", "border-t-coral"][i % 4]} bg-bg-card p-7 transition-colors`}>
                       <h3 className="font-semibold mb-4">{s.category}</h3>
                       <div className="flex flex-wrap gap-2">
                         {s.tags.map((tg) => (

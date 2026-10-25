@@ -4,6 +4,7 @@ import { SITE } from "@/data/content";
 import AsciiWave from "@/components/effects/AsciiWave";
 import { useTheme } from "@/lib/theme";
 import Reveal from "@/components/Reveal";
+import Mark, { Sparks } from "@/components/Mark";
 
 // One dark area for the whole bottom of every page: the closing call to action
 // and the footer share a single ASCII water background. The CTA is hidden only
@@ -23,10 +24,10 @@ export default function Footer() {
 
       {showCta && (
         <section className="relative container-page pb-14 pt-16 md:pb-20 md:pt-24">
-          <p className="num !text-parchment-100/60 mb-4">Next step</p>
+          <div className="mb-4 flex items-center gap-3"><p className="num !text-parchment-100/60">Next step</p><Sparks className="h-8 w-10" /></div>
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="display text-[clamp(2.4rem,8vw,6.5rem)]"><Reveal variant="blur">Hiring or planning<br />a campaign?</Reveal></h2>
+              <h2 className="display text-[clamp(2.4rem,8vw,6.5rem)]"><Reveal variant="blur">Hiring or planning<br />a <Mark color="sun">campaign</Mark>?</Reveal></h2>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-parchment-100/70">
                 Let's talk. I lead social campaigns and build the web and systems behind them.
               </p>
