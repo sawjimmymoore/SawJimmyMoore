@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ABOUT_PARAGRAPHS, EXPERIENCE, SKILLS, EDUCATION, CERTIFICATIONS, SITE } from "@/data/content";
 import RevealText from "@/components/RevealText";
+import Reveal from "@/components/Reveal";
+import ScrollMarquee from "@/components/ScrollMarquee";
 import TiltCard from "@/components/TiltCard";
 import CountUp from "@/components/CountUp";
 import ScrollTextHighlight from "@/components/effects/ScrollTextHighlight";
@@ -22,23 +24,25 @@ export default function About() {
       <section className="relative bg-ink-900 text-white pt-24 md:pt-32 pb-14 md:pb-24 overflow-hidden">
         <div className="absolute inset-0 opacity-50"><AsciiWave ink="#B9CC4F" cell={12} fill={7} push={12} speed={6} clickIntensity={50} /></div>
         <div className="container-page relative">
-          <p className="num !text-white/60 mb-4">About</p>
+          <Reveal variant="left"><p className="num !text-white/60 mb-4">About</p></Reveal>
           <h1 className="display text-5xl md:text-8xl"><RevealText text="Marketing, social, tech." /></h1>
         </div>
       </section>
 
       <section className="container-page py-12 md:py-28 grid gap-10 md:grid-cols-[1fr_1.6fr]">
-        <p className="num md:sticky md:top-28 self-start">01 / Profile</p>
+        <Reveal variant="left"><p className="num md:sticky md:top-28 self-start">01 / Profile</p></Reveal>
         <div>
           <ScrollTextHighlight text={ABOUT_PARAGRAPHS[0]} className="text-[clamp(1.3rem,2.6vw,2rem)] font-semibold leading-snug mb-10" />
           <div className="space-y-6 text-[16px] leading-relaxed text-muted-foreground max-w-2xl">
             {ABOUT_PARAGRAPHS.slice(1).map((p, i) => (
               <motion.p key={p} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>{p}</motion.p>
             ))}
-            <p className="font-mono text-[11px] uppercase tracking-widest2">{SITE.languages}</p>
+            <Reveal variant="blur"><p className="font-mono text-[11px] uppercase tracking-widest2">{SITE.languages}</p></Reveal>
           </div>
         </div>
       </section>
+
+      <ScrollMarquee rows={["Marketing", "Social media", "Technology"]} />
 
       <section className="container-page pb-16">
         <div className="grid grid-cols-3 gap-2 md:gap-6">
@@ -59,7 +63,7 @@ export default function About() {
 
       {/* TABS */}
       <section className="container-page pb-16 md:pb-24">
-        <p className="num mb-6">02 / Detail</p>
+        <Reveal variant="left"><p className="num mb-6">02 / Detail</p></Reveal>
         <div className="mb-8 flex w-full md:w-auto md:inline-flex border border-parchment-100/20 p-1">
           {TABS.map((t) => (
             <button

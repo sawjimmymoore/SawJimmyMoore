@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -39,6 +39,7 @@ function App() {
   }, [location.pathname]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen flex flex-col">
       <ScrollProgress />
       <ScrollToTop />
@@ -70,6 +71,7 @@ function App() {
       <ChatWidget />
       <CookieConsent />
     </div>
+    </MotionConfig>
   );
 }
 

@@ -656,11 +656,11 @@ function Nav({ project }: { project: Project }) {
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5 }}
-      className="mb-20"
+      initial={{ opacity: 0, y: 56, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.15, margin: "0px 0px -8% 0px" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="mb-14 md:mb-20"
     >
       <p className="eyebrow mb-3">{label}</p>
       {children}
