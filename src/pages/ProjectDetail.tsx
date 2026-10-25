@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import CtaBlock from "@/components/CtaBlock";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
@@ -42,6 +43,7 @@ export default function ProjectDetail() {
         <Meta project={project} />
         <Nav project={project} />
       </div>
+      <CtaBlock title="Like what you see? Let's talk." sub="Hiring for a project lead or planning a campaign? I can take it from brief to launch." />
     </motion.div>
   );
 }

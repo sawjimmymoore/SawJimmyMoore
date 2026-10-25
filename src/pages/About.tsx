@@ -43,9 +43,9 @@ export default function About() {
       <section className="container-page pb-16">
         <div className="grid gap-6 md:grid-cols-3">
           {[
-            { v: 62, l: "Leads from one school roadshow" },
-            { v: 4, l: "Brand social pages run" },
             { v: 8, l: "Websites and systems built" },
+            { v: 4, l: "Brand social pages run" },
+            { v: 3, l: "Programmes marketed end to end" },
           ].map((s, i) => (
             <motion.div key={s.l} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <TiltCard className="border border-parchment-100/15 bg-bg-card p-7 hover:border-primary-400 transition-colors">

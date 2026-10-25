@@ -35,9 +35,9 @@ export const MESSAGE_SUGGESTIONS = [
 ];
 
 export const STATS = [
-  { value: 62, suffix: "", label: "Leads from one school roadshow" },
-  { value: 4, suffix: "", label: "Brand social pages run" },
   { value: 8, suffix: "", label: "Websites and systems built" },
+  { value: 4, suffix: "", label: "Brand social pages run" },
+  { value: 3, suffix: "", label: "Programmes marketed end to end" },
 ];
 
 export const IMPACT_POINTS = [

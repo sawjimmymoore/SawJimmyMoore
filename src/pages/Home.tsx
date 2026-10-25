@@ -105,12 +105,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 02 WORK */}
-      <section className="bg-ink-900 text-white py-24 md:py-32">
-        <div className="container-page">
+      {/* 02 NUMBERS */}
+      <section className="container-page py-24 md:py-32">
+        <p className="num mb-10">02 / At a glance</p>
+        <div className="grid gap-6 md:grid-cols-3">
+          {STATS.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+            >
+              <TiltCard className="h-full border border-parchment-100/15 bg-bg-card p-8 transition-colors hover:border-primary-400">
+                <p className="display text-7xl md:text-8xl text-primary-400"><CountUp to={s.value} suffix={s.suffix} /></p>
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.label}</p>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Dark area: each section has its own ASCII water pool behind it. The
+          effect listens on window, so content above it never blocks the pointer. */}
+      <div className="relative overflow-hidden bg-ink-900">
+      {/* 03 WORK */}
+      <section className="relative text-white py-24 md:py-32">
+        <div className="absolute inset-0 opacity-45"><AsciiWave ink="#B9CC4F" cell={11} fill={10} push={14} speed={7} clickIntensity={55} /></div>
+        <div className="container-page relative">
           <div className="mb-14 flex items-end justify-between">
             <div>
-              <p className="num !text-white/50 mb-4">02 / Selected work</p>
+              <p className="num !text-white/50 mb-4">03 / Selected work</p>
               <h2 className="display text-4xl md:text-6xl"><RevealText text="Projects" /></h2>
             </div>
             <Link to="/projects" className="hidden md:inline-flex btn-line text-white hover:!bg-glow hover:!text-ink-900 hover:!border-glow">All work</Link>
@@ -145,40 +170,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 03 NUMBERS */}
-      <section className="container-page py-24 md:py-32">
-        <p className="num mb-10">03 / At a glance</p>
-        <div className="grid gap-6 md:grid-cols-3">
-          {STATS.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-            >
-              <TiltCard className="h-full border border-parchment-100/15 bg-bg-card p-8 transition-colors hover:border-primary-400">
-                <p className="display text-7xl md:text-8xl text-primary-400"><CountUp to={s.value} suffix={s.suffix} /></p>
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-widest2 text-muted-foreground">{s.label}</p>
-              </TiltCard>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA with interactive ASCII */}
-      <section className="relative overflow-hidden bg-ink-900 text-white">
-        <div className="absolute inset-0 opacity-60"><AsciiWave ink="#B9CC4F" cell={11} fill={7} push={14} speed={7} clickIntensity={55} /></div>
-        <div className="container-page relative flex flex-col gap-8 py-28 md:flex-row md:items-end md:justify-between">
+      {/* CTA */}
+      <section className="relative text-white">
+        <div className="absolute inset-0 opacity-50"><AsciiWave ink="#B9CC4F" cell={11} fill={9} push={14} speed={7} clickIntensity={55} /></div>
+        <div className="container-page relative flex flex-col gap-8 pb-28 pt-16 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="num !text-white/60 mb-4">Move the cursor. Click the water.</p>
-            <h2 className="display text-5xl md:text-8xl">Let's talk.</h2>
+            <h2 className="display text-5xl md:text-8xl">Hiring or planning<br />a campaign?</h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/70">Let's talk. I lead social campaigns and build the web and systems behind them.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center gap-2 bg-glow px-7 py-4 font-mono text-[11px] uppercase tracking-widest2 text-ink-900 hover:bg-white transition-colors">
-            Get in touch <ArrowUpRight size={16} />
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-glow px-7 py-4 font-mono text-[11px] uppercase tracking-widest2 text-ink-900 hover:bg-white transition-colors">
+              Book a call <ArrowUpRight size={16} />
+            </Link>
+            <a href={`mailto:${SITE.email}`} className="btn-line text-white hover:!bg-white hover:!text-ink-900 hover:!border-white">Email me</a>
+          </div>
         </div>
       </section>
+      </div>
     </motion.div>
   );
 }

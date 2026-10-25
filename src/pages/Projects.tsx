@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { PROJECTS, FEATURED_ORDER, type Project } from "@/data/content";
 import RevealText from "@/components/RevealText";
+import CtaBlock from "@/components/CtaBlock";
 
 function Cell({ p, i }: { p: Project; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -76,7 +77,7 @@ export default function Projects() {
   const names = list.map((p) => p.title.split(",")[0]);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="pt-32 pb-24">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="pt-32">
       <div className="container-page">
         <div ref={heroRef} className="mb-12">
           <p className="num mb-4">Work · ({String(list.length).padStart(2, "0")})</p>
@@ -118,6 +119,7 @@ export default function Projects() {
           )}
         </div>
       </div>
+      <div className="mt-24"><CtaBlock /></div>
     </motion.div>
   );
 }
