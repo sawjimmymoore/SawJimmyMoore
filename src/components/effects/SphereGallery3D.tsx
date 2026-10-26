@@ -71,6 +71,8 @@ export interface SphereGallery3DProps {
     hover?: number
     /** node corner radius, percent of half its short side */
     rounded?: number
+    /** 0-1, how dark the far side of the sphere gets (1 = no depth shading) */
+    depthFloor?: number
     core?: CoreGroup
     className?: string
     style?: React.CSSProperties
@@ -175,12 +177,15 @@ void main() {
     float mask = 1.0 - smoothstep(-aa, aa, d);
     if (mask <= 0.002) discard;
 
-    vec3 col = mix(uPlaceholder, texture2D(uMap, vUv).rgb, uHasTex);
-    col *= uDim;
+    // Textures are uploaded premultiplied, so a card can be any silhouette
+    // (a folder with a tab) and transparent pixels simply fall away.
+    vec4 tex = texture2D(uMap, vUv);
+    vec3 col = mix(uPlaceholder, tex.rgb, uHasTex);
+    float ta = mix(1.0, tex.a, uHasTex);
 
-    float a = mask * uOpacity;
+    float a = mask * uOpacity * ta;
     if (a <= 0.002) discard;
-    gl_FragColor = vec4(col * a, a);
+    gl_FragColor = vec4(col * uDim * mask * uOpacity, a);
 }
 `
 
@@ -617,6 +622,7 @@ interface Live {
     lineColor: string
     lineOpacity: number
     rounded: number
+    depthFloor: number
     spin: number
     force: number
     hoverDist: number
@@ -698,6 +704,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
         direction = "counterclockwise",
         hover = 200,
         rounded = 18,
+        depthFloor = DEPTH_FLOOR,
         core = { coreSize: 24, coreColor: "#FFFFFF59", lineColor: "#FFFFFF59" },
         className,
         style,
@@ -729,6 +736,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
         lineColor,
         lineOpacity: lineAlpha,
         rounded: clamp(rounded / 100, 0, 1),
+        depthFloor: clamp(depthFloor, 0, 1),
         spin: (BASE_SPIN * speed * spinSign) / 50,
         force: clamp(hover / 100, 0, 3),
         hoverDist: radius * clamp((hover / 100) * 0.35, 0, 3),
@@ -911,14 +919,16 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
             if (!tex) return null
             gl.bindTexture(gl.TEXTURE_2D, tex)
             gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
+            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
             gl.texImage2D(
                 gl.TEXTURE_2D,
                 0,
-                isGL2 ? (gl as any).SRGB8_ALPHA8 : gl.RGBA,
+                gl.RGBA,
                 gl.RGBA,
                 gl.UNSIGNED_BYTE,
                 img
             )
+            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false)
             gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
@@ -1480,7 +1490,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
                 const depth =
                     R[6] * nd.px + R[7] * nd.py + R[8] * nd.pz
                 const tt = clamp((depth + L.radius) / (2 * L.radius), 0, 1)
-                gl.uniform1f(qLoc.uDim, DEPTH_FLOOR + (1 - DEPTH_FLOOR) * tt)
+                gl.uniform1f(qLoc.uDim, L.depthFloor + (1 - L.depthFloor) * tt)
 
                 const dist = Math.max(0.001, camDist - depth)
                 gl.uniform1f(qLoc.uAA, (worldPerPixel * dist) / Math.max(1e-4, sy))
