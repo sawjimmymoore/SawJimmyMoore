@@ -98,8 +98,8 @@ export default function Projects() {
 
   const dark = theme === "dark";
   const core = dark
-    ? { coreSize: 26, coreColor: "#B9CC4Fd9", lineColor: "#FFFFFF4D" }
-    : { coreSize: 26, coreColor: "#626F22d9", lineColor: "#0C0C0C47" };
+    ? { coreSize: 17, coreColor: "#B9CC4Fe6", lineColor: "#F4F2ED66" }
+    : { coreSize: 17, coreColor: "#626F22e6", lineColor: "#0C0C0C59" };
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const titleX = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
@@ -128,7 +128,7 @@ export default function Projects() {
               size={46}
               rounded={0}
               hover={220}
-              depthFloor={dark ? 0.5 : 0.72}
+              depthFloor={dark ? 0.55 : 0.8}
               core={core}
               background="transparent"
               style={{ minWidth: 0, minHeight: 0 }}

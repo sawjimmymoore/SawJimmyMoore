@@ -230,8 +230,8 @@ const ZOOM_RATE = 9
 const CLICK_SLOP_PX = 5
 const CLICK_MS = 450
 const PLACEHOLDER = "#1b1b20"
-const SPHERE_W = 32
-const SPHERE_H = 24
+const SPHERE_W = 24
+const SPHERE_H = 14
 const NEAR = 0.1
 const FAR = 2000
 
@@ -576,10 +576,18 @@ function buildSphere(widthSeg: number, heightSeg: number) {
         }
     }
 
+    // Only the meridians and parallels (no triangle diagonals): reads as a
+    // drawn globe rather than a mesh.
     const edges: number[] = []
-    for (let i = 0; i < tris.length; i += 3) {
-        const a = tris[i], b = tris[i + 1], c = tris[i + 2]
-        edges.push(a, b, b, c, c, a)
+    for (let iy = 0; iy <= heightSeg; iy++) {
+        for (let ix = 0; ix < widthSeg; ix++) {
+            edges.push(grid[iy][ix], grid[iy][ix + 1])
+        }
+    }
+    for (let iy = 0; iy < heightSeg; iy++) {
+        for (let ix = 0; ix <= widthSeg; ix++) {
+            edges.push(grid[iy][ix], grid[iy + 1][ix])
+        }
     }
 
     return {
