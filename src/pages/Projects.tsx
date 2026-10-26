@@ -118,7 +118,7 @@ export default function Projects() {
         {/* 3D sphere: every project is a folder. Drag to spin, tap a folder to open it. No box, it floats on the page. */}
       </div>
 
-      <div className="relative left-1/2 mb-6 h-[460px] w-screen -translate-x-1/2 md:mb-10 md:h-[700px]">
+      <div className="relative left-1/2 mb-6 h-[380px] w-screen -translate-x-1/2 md:mb-10 md:h-[700px]">
         {items.length > 0 && (
           <Suspense fallback={null}>
             <SphereGallery3D
@@ -136,7 +136,7 @@ export default function Projects() {
           </Suspense>
         )}
         <p className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-widest2 text-muted-foreground">
-          Drag to spin · tap a folder to open it
+          <span className="md:hidden">Swipe sideways to spin · tap a folder</span><span className="hidden md:inline">Drag to spin · tap a folder to open it</span>
         </p>
       </div>
 

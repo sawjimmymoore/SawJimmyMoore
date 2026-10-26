@@ -1116,12 +1116,12 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
 
             const L = live.current
             orbit.yaw += (dx * L.orbitSpeed * Math.PI) / 180
-            orbit.pitch += (dy * L.orbitSpeed * Math.PI) / 180
+            if (e.pointerType !== "touch") orbit.pitch += (dy * L.orbitSpeed * Math.PI) / 180
             const lim = (L.orbitLimit * Math.PI) / 180
             orbit.pitch = clamp(orbit.pitch, -lim, lim)
 
             orbit.yawVel = dx * L.orbitSpeed * 60
-            orbit.pitchVel = dy * L.orbitSpeed * 60
+            orbit.pitchVel = e.pointerType === "touch" ? 0 : dy * L.orbitSpeed * 60
         }
 
         const release = (e: PointerEvent) => {
@@ -1134,7 +1134,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
                 Math.abs(e.clientX - pointer.downX) +
                 Math.abs(e.clientY - pointer.downY)
 
-            if (dist <= CLICK_SLOP_PX && dt <= CLICK_MS) {
+            if (e.type !== "pointercancel" && dist <= CLICK_SLOP_PX && dt <= CLICK_MS) {
                 orbit.yawVel = 0
                 orbit.pitchVel = 0
                 setNdc(e)
@@ -1164,6 +1164,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
         }
 
         const onWheel = (e: WheelEvent) => {
+            if (!e.ctrlKey && !e.metaKey) return // plain wheel scrolls the page
             e.preventDefault()
             const L = live.current
             orbit.zoomTarget = clamp(
@@ -1174,7 +1175,7 @@ export default function SphereGallery3D(props: SphereGallery3DProps) {
         }
 
         canvas.style.cursor = "grab"
-        canvas.style.touchAction = "none"
+        canvas.style.touchAction = "pan-y"
         canvas.addEventListener("pointerdown", onPointerDown)
         canvas.addEventListener("pointerleave", onLeave)
         canvas.addEventListener("wheel", onWheel, { passive: false })
